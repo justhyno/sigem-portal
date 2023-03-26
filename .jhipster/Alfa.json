@@ -1,0 +1,27 @@
+{
+  "changelogDate": "20230326082109",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "parcela",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataLevantamento",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Alfa",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "processo",
+      "otherEntityName": "ficha",
+      "relationshipName": "ficha",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

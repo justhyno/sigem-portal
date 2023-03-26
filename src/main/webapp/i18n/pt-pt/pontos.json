@@ -1,0 +1,29 @@
+{
+  "sigemPortalApp": {
+    "pontos": {
+      "home": {
+        "title": "Pontos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Pontos",
+        "createOrEditLabel": "Criar ou editar Pontos",
+        "notFound": "Nenhum Pontos encontrado"
+      },
+      "created": "Um novo Pontos foi criado com o identificador {{ param }}",
+      "updated": "Pontos com identificador {{ param }} foi actualizado",
+      "deleted": "Pontos com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Pontos {{ id }}?"
+      },
+      "detail": {
+        "title": "Pontos"
+      },
+      "id": "ID",
+      "parcela": "Parcela",
+      "pointX": "Point X",
+      "pointY": "Point Y",
+      "marco": "Marco",
+      "zona": "Zona",
+      "spatialUnit": "Spatial Unit"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "changelogDate": "20230326083732",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "parcela",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pointX",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "pointY",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "marco",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zona",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Pontos",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "spatialUnit",
+      "relationshipName": "spatialUnit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

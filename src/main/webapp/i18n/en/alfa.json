@@ -1,0 +1,26 @@
+{
+  "sigemPortalApp": {
+    "alfa": {
+      "home": {
+        "title": "Alfas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Alfa",
+        "createOrEditLabel": "Create or edit a Alfa",
+        "notFound": "No Alfas found"
+      },
+      "created": "A new Alfa is created with identifier {{ param }}",
+      "updated": "A Alfa is updated with identifier {{ param }}",
+      "deleted": "A Alfa is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Alfa {{ id }}?"
+      },
+      "detail": {
+        "title": "Alfa"
+      },
+      "id": "ID",
+      "parcela": "Parcela",
+      "dataLevantamento": "Data Levantamento",
+      "ficha": "Ficha"
+    }
+  }
+}

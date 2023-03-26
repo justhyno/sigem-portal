@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="alfa">
+      <h2 data-cy="alfaDetailsHeading"><span jhiTranslate="sigemPortalApp.alfa.detail.title">Alfa</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ alfa.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.alfa.parcela">Parcela</span></dt>
+        <dd>
+          <span>{{ alfa.parcela }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.alfa.dataLevantamento">Data Levantamento</span></dt>
+        <dd>
+          <span>{{ alfa.dataLevantamento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.alfa.ficha">Ficha</span></dt>
+        <dd>
+          <div *ngIf="alfa.ficha">
+            <a [routerLink]="['/ficha', alfa.ficha.id, 'view']">{{ alfa.ficha.processo }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/alfa', alfa.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

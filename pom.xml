@@ -1304,7 +1304,7 @@
                                                 <ignore/>
                                             </action>
                                         </pluginExecution>
-                                        <pluginExecution>
+                                       <!-- <pluginExecution>
                                             <pluginExecutionFilter>
                                                 <groupId>org.openapitools</groupId>
                                                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -1317,6 +1317,7 @@
                                                 <ignore />
                                             </action>
                                         </pluginExecution>
+                                        -->
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>

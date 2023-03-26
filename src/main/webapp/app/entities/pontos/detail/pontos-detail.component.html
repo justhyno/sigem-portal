@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pontos">
+      <h2 data-cy="pontosDetailsHeading"><span jhiTranslate="sigemPortalApp.pontos.detail.title">Pontos</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ pontos.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.parcela">Parcela</span></dt>
+        <dd>
+          <span>{{ pontos.parcela }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.pointX">Point X</span></dt>
+        <dd>
+          <span>{{ pontos.pointX }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.pointY">Point Y</span></dt>
+        <dd>
+          <span>{{ pontos.pointY }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.marco">Marco</span></dt>
+        <dd>
+          <span>{{ pontos.marco }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.zona">Zona</span></dt>
+        <dd>
+          <span>{{ pontos.zona }}</span>
+        </dd>
+        <dt><span jhiTranslate="sigemPortalApp.pontos.spatialUnit">Spatial Unit</span></dt>
+        <dd>
+          <div *ngIf="pontos.spatialUnit">
+            <a [routerLink]="['/spatial-unit', pontos.spatialUnit.id, 'view']">{{ pontos.spatialUnit.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pontos', pontos.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

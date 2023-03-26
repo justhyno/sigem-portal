@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Ficha.
+    -->
+    <changeSet id="20230326081850-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="projecto_id"
+                                 baseTableName="ficha"
+                                 constraintName="fk_ficha__projecto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="projecto"/>
+    </changeSet>
+</databaseChangeLog>

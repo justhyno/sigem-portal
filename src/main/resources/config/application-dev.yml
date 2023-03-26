@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/SigemPortal
-    username: SigemPortal
-    password:
+    url: jdbc:postgresql://localhost:5432/SIGEMPortal
+    username: postgres
+    password: jufeba
     hikari:
       poolName: Hikari
       auto-commit: false

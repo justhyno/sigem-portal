@@ -1,0 +1,28 @@
+{
+  "changelogDate": "20230326081850",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "parcela",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "processo",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Ficha",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "descricao",
+      "otherEntityName": "projecto",
+      "relationshipName": "projecto",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "service": "serviceImpl"
+}

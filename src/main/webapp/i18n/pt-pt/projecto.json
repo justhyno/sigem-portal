@@ -1,0 +1,26 @@
+{
+  "sigemPortalApp": {
+    "projecto": {
+      "home": {
+        "title": "Projectos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Projecto",
+        "createOrEditLabel": "Criar ou editar Projecto",
+        "notFound": "Nenhum Projectos encontrado"
+      },
+      "created": "Um novo Projecto foi criado com o identificador {{ param }}",
+      "updated": "Projecto com identificador {{ param }} foi actualizado",
+      "deleted": "Projecto com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Projecto {{ id }}?"
+      },
+      "detail": {
+        "title": "Projecto"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "zona": "Zona",
+      "descricao": "Descricao"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "sigemPortalApp": {
+    "ficha": {
+      "home": {
+        "title": "Fichas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Ficha",
+        "createOrEditLabel": "Criar ou editar Ficha",
+        "notFound": "Nenhum Fichas encontrado"
+      },
+      "created": "Um novo Ficha foi criado com o identificador {{ param }}",
+      "updated": "Ficha com identificador {{ param }} foi actualizado",
+      "deleted": "Ficha com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Ficha {{ id }}?"
+      },
+      "detail": {
+        "title": "Ficha"
+      },
+      "id": "ID",
+      "parcela": "Parcela",
+      "processo": "Processo",
+      "projecto": "Projecto"
+    }
+  }
+}

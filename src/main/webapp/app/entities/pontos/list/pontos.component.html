@@ -1,0 +1,135 @@
+<div>
+  <h2 id="page-heading" data-cy="PontosHeading">
+    <span jhiTranslate="sigemPortalApp.pontos.home.title">Pontos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="sigemPortalApp.pontos.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pontos"
+        [routerLink]="['/pontos/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sigemPortalApp.pontos.home.createLabel"> Criar novo(a) Pontos </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pontos?.length === 0">
+    <span jhiTranslate="sigemPortalApp.pontos.home.notFound">Nenhum Pontos encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="pontos && pontos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parcela">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.parcela">Parcela</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pointX">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.pointX">Point X</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pointY">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.pointY">Point Y</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="marco">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.marco">Marco</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="zona">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.zona">Zona</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="spatialUnit.id">
+            <div class="d-flex">
+              <span jhiTranslate="sigemPortalApp.pontos.spatialUnit">Spatial Unit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pontos of pontos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pontos', pontos.id, 'view']">{{ pontos.id }}</a>
+          </td>
+          <td>{{ pontos.parcela }}</td>
+          <td>{{ pontos.pointX }}</td>
+          <td>{{ pontos.pointY }}</td>
+          <td>{{ pontos.marco }}</td>
+          <td>{{ pontos.zona }}</td>
+          <td>
+            <div *ngIf="pontos.spatialUnit">
+              <a [routerLink]="['/spatial-unit', pontos.spatialUnit.id, 'view']">{{ pontos.spatialUnit.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/pontos', pontos.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/pontos', pontos.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(pontos)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pontos && pontos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "sigemPortalApp": {
+    "spatialUnit": {
+      "home": {
+        "title": "Spatial Units",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Spatial Unit",
+        "createOrEditLabel": "Create or edit a Spatial Unit",
+        "notFound": "No Spatial Units found"
+      },
+      "created": "A new Spatial Unit is created with identifier {{ param }}",
+      "updated": "A Spatial Unit is updated with identifier {{ param }}",
+      "deleted": "A Spatial Unit is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Spatial Unit {{ id }}?"
+      },
+      "detail": {
+        "title": "Spatial Unit"
+      },
+      "id": "ID",
+      "parcela": "Parcela",
+      "ficha": "Ficha"
+    }
+  }
+}

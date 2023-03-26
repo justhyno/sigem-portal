@@ -1,0 +1,23 @@
+{
+  "changelogDate": "20230326083113",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "parcela",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SpatialUnit",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "processo",
+      "otherEntityName": "ficha",
+      "relationshipName": "ficha",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

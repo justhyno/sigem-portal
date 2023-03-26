@@ -1,0 +1,26 @@
+{
+  "sigemPortalApp": {
+    "alfa": {
+      "home": {
+        "title": "Alfas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Alfa",
+        "createOrEditLabel": "Criar ou editar Alfa",
+        "notFound": "Nenhum Alfas encontrado"
+      },
+      "created": "Um novo Alfa foi criado com o identificador {{ param }}",
+      "updated": "Alfa com identificador {{ param }} foi actualizado",
+      "deleted": "Alfa com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Alfa {{ id }}?"
+      },
+      "detail": {
+        "title": "Alfa"
+      },
+      "id": "ID",
+      "parcela": "Parcela",
+      "dataLevantamento": "Data Levantamento",
+      "ficha": "Ficha"
+    }
+  }
+}
