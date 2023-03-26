@@ -20,7 +20,8 @@
       "id": "ID",
       "nome": "Nome",
       "zona": "Zona",
-      "descricao": "Descricao"
+      "descricao": "Descricao",
+      "codigo": "Codigo"
     }
   }
 }

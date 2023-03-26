@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "spatial_unit")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class SpatialUnit implements Serializable {
+public class SpatialUnit extends AbstractAuditingEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -23,6 +23,7 @@ describe('Projecto Form Service', () => {
             nome: expect.any(Object),
             zona: expect.any(Object),
             descricao: expect.any(Object),
+            codigo: expect.any(Object),
           })
         );
       });
@@ -36,6 +37,7 @@ describe('Projecto Form Service', () => {
             nome: expect.any(Object),
             zona: expect.any(Object),
             descricao: expect.any(Object),
+            codigo: expect.any(Object),
           })
         );
       });

@@ -21,6 +21,7 @@ type ProjectoFormGroupContent = {
   nome: FormControl<IProjecto['nome']>;
   zona: FormControl<IProjecto['zona']>;
   descricao: FormControl<IProjecto['descricao']>;
+  codigo: FormControl<IProjecto['codigo']>;
 };
 
 export type ProjectoFormGroup = FormGroup<ProjectoFormGroupContent>;
@@ -43,6 +44,7 @@ export class ProjectoFormService {
       nome: new FormControl(projectoRawValue.nome),
       zona: new FormControl(projectoRawValue.zona),
       descricao: new FormControl(projectoRawValue.descricao),
+      codigo: new FormControl(projectoRawValue.codigo),
     });
   }
 

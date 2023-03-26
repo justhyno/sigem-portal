@@ -12,7 +12,8 @@ import { IAlfa, NewAlfa } from '../alfa.model';
 
 export type PartialUpdateAlfa = Partial<IAlfa> & Pick<IAlfa, 'id'>;
 
-type RestOf<T extends IAlfa | NewAlfa> = Omit<T, 'dataLevantamento'> & {
+type RestOf<T extends IAlfa | NewAlfa> = Omit<T, 'dataNascimento' | 'dataLevantamento'> & {
+  dataNascimento?: string | null;
   dataLevantamento?: string | null;
 };
 
@@ -98,6 +99,7 @@ export class AlfaService {
   protected convertDateFromClient<T extends IAlfa | NewAlfa | PartialUpdateAlfa>(alfa: T): RestOf<T> {
     return {
       ...alfa,
+      dataNascimento: alfa.dataNascimento?.format(DATE_FORMAT) ?? null,
       dataLevantamento: alfa.dataLevantamento?.format(DATE_FORMAT) ?? null,
     };
   }
@@ -105,6 +107,7 @@ export class AlfaService {
   protected convertDateFromServer(restAlfa: RestAlfa): IAlfa {
     return {
       ...restAlfa,
+      dataNascimento: restAlfa.dataNascimento ? dayjs(restAlfa.dataNascimento) : undefined,
       dataLevantamento: restAlfa.dataLevantamento ? dayjs(restAlfa.dataLevantamento) : undefined,
     };
   }

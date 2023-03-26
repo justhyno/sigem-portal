@@ -5,14 +5,15 @@ export const sampleWithRequiredData: IProjecto = {
 };
 
 export const sampleWithPartialData: IProjecto = {
-  id: 23344,
+  id: 68628,
 };
 
 export const sampleWithFullData: IProjecto = {
-  id: 68628,
-  nome: 'multi-byte Minnesota database',
-  zona: 'withdrawal',
-  descricao: 'applications',
+  id: 68154,
+  nome: 'Market vortals Proactive',
+  zona: '24/365 applications',
+  descricao: 'Teclado',
+  codigo: 35133,
 };
 
 export const sampleWithNewData: NewProjecto = {

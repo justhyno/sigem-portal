@@ -17,6 +17,132 @@
             <column name="parcela" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="tipo_titular" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nome_titular" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="estado_social" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="data_nascimento" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="sexo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="documento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="numero_documento" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="dat_emissao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="local_emissao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="contacto_principal" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="contacto_alternativo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="estado_civil" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nome_conjugue" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="distrito_municipal" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bairro" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="quatreirao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="talhao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="celula" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bloco" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="avenida" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="numero_policia" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="uso_actual" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="forma_uso" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="forma_obtencao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ano_ocupacao" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo_acesso" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="conflito" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="detalhes_conflito" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="construcao_precaria" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="pisos_acima_soleira" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="pisos_abaixo_soleira" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_barrote" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_ibr" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_pranchas" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_pau" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_canico" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_construcao_cimento" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="ocupacao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo_contrucao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="detalhes_tipo_contrucao" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="infraestrutura_existente" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="data_levantamento" type="date">
                 <constraints nullable="true" />
             </column>
@@ -45,6 +171,48 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="parcela" type="string"/>
+            <column name="tipo_titular" type="string"/>
+            <column name="nome_titular" type="string"/>
+            <column name="estado_social" type="string"/>
+            <column name="data_nascimento" type="date"/>
+            <column name="sexo" type="string"/>
+            <column name="documento" type="string"/>
+            <column name="numero_documento" type="string"/>
+            <column name="dat_emissao" type="string"/>
+            <column name="local_emissao" type="string"/>
+            <column name="contacto_principal" type="string"/>
+            <column name="contacto_alternativo" type="string"/>
+            <column name="estado_civil" type="string"/>
+            <column name="nome_conjugue" type="string"/>
+            <column name="distrito_municipal" type="string"/>
+            <column name="bairro" type="string"/>
+            <column name="quatreirao" type="string"/>
+            <column name="talhao" type="string"/>
+            <column name="celula" type="string"/>
+            <column name="bloco" type="string"/>
+            <column name="avenida" type="string"/>
+            <column name="numero_policia" type="string"/>
+            <column name="uso_actual" type="string"/>
+            <column name="forma_uso" type="string"/>
+            <column name="forma_obtencao" type="string"/>
+            <column name="tipo" type="string"/>
+            <column name="ano_ocupacao" type="numeric"/>
+            <column name="tipo_acesso" type="string"/>
+            <column name="conflito" type="boolean"/>
+            <column name="detalhes_conflito" type="boolean"/>
+            <column name="construcao_precaria" type="boolean"/>
+            <column name="pisos_acima_soleira" type="numeric"/>
+            <column name="pisos_abaixo_soleira" type="numeric"/>
+            <column name="material_construcao_barrote" type="boolean"/>
+            <column name="material_construcao_ibr" type="boolean"/>
+            <column name="material_construcao_pranchas" type="boolean"/>
+            <column name="material_construcao_pau" type="boolean"/>
+            <column name="material_construcao_canico" type="boolean"/>
+            <column name="material_construcao_cimento" type="boolean"/>
+            <column name="ocupacao" type="string"/>
+            <column name="tipo_contrucao" type="string"/>
+            <column name="detalhes_tipo_contrucao" type="string"/>
+            <column name="infraestrutura_existente" type="string"/>
             <column name="data_levantamento" type="date"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

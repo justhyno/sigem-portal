@@ -1,6 +1,7 @@
 {
   "changelogDate": "20230326083113",
   "dto": "mapstruct",
+  "enableEntityAudit": true,
   "fields": [
     {
       "fieldName": "parcela",

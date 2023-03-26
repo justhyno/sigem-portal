@@ -17,6 +17,8 @@ public class ProjectoDTO implements Serializable {
 
     private String descricao;
 
+    private Long codigo;
+
     public Long getId() {
         return id;
     }
@@ -49,6 +51,14 @@ public class ProjectoDTO implements Serializable {
         this.descricao = descricao;
     }
 
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,6 +88,7 @@ public class ProjectoDTO implements Serializable {
             ", nome='" + getNome() + "'" +
             ", zona='" + getZona() + "'" +
             ", descricao='" + getDescricao() + "'" +
+            ", codigo=" + getCodigo() +
             "}";
     }
 }

@@ -9,6 +9,7 @@ import { AlfaService, RestAlfa } from './alfa.service';
 
 const requireRestSample: RestAlfa = {
   ...sampleWithRequiredData,
+  dataNascimento: sampleWithRequiredData.dataNascimento?.format(DATE_FORMAT),
   dataLevantamento: sampleWithRequiredData.dataLevantamento?.format(DATE_FORMAT),
 };
 

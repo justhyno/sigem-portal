@@ -41,6 +41,10 @@ class ProjectoResourceIT {
     private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
     private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_CODIGO = 1L;
+    private static final Long UPDATED_CODIGO = 2L;
+    private static final Long SMALLER_CODIGO = 1L - 1L;
+
     private static final String ENTITY_API_URL = "/api/projectos";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -68,7 +72,7 @@ class ProjectoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Projecto createEntity(EntityManager em) {
-        Projecto projecto = new Projecto().nome(DEFAULT_NOME).zona(DEFAULT_ZONA).descricao(DEFAULT_DESCRICAO);
+        Projecto projecto = new Projecto().nome(DEFAULT_NOME).zona(DEFAULT_ZONA).descricao(DEFAULT_DESCRICAO).codigo(DEFAULT_CODIGO);
         return projecto;
     }
 
@@ -79,7 +83,7 @@ class ProjectoResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Projecto createUpdatedEntity(EntityManager em) {
-        Projecto projecto = new Projecto().nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO);
+        Projecto projecto = new Projecto().nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO).codigo(UPDATED_CODIGO);
         return projecto;
     }
 
@@ -105,6 +109,7 @@ class ProjectoResourceIT {
         assertThat(testProjecto.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testProjecto.getZona()).isEqualTo(DEFAULT_ZONA);
         assertThat(testProjecto.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
+        assertThat(testProjecto.getCodigo()).isEqualTo(DEFAULT_CODIGO);
     }
 
     @Test
@@ -140,7 +145,8 @@ class ProjectoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(projecto.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].zona").value(hasItem(DEFAULT_ZONA)))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())));
     }
 
     @Test
@@ -157,7 +163,8 @@ class ProjectoResourceIT {
             .andExpect(jsonPath("$.id").value(projecto.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
             .andExpect(jsonPath("$.zona").value(DEFAULT_ZONA))
-            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO));
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO))
+            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO.intValue()));
     }
 
     @Test
@@ -373,6 +380,97 @@ class ProjectoResourceIT {
         defaultProjectoShouldBeFound("descricao.doesNotContain=" + UPDATED_DESCRICAO);
     }
 
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsEqualToSomething() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo equals to DEFAULT_CODIGO
+        defaultProjectoShouldBeFound("codigo.equals=" + DEFAULT_CODIGO);
+
+        // Get all the projectoList where codigo equals to UPDATED_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.equals=" + UPDATED_CODIGO);
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsInShouldWork() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo in DEFAULT_CODIGO or UPDATED_CODIGO
+        defaultProjectoShouldBeFound("codigo.in=" + DEFAULT_CODIGO + "," + UPDATED_CODIGO);
+
+        // Get all the projectoList where codigo equals to UPDATED_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.in=" + UPDATED_CODIGO);
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo is not null
+        defaultProjectoShouldBeFound("codigo.specified=true");
+
+        // Get all the projectoList where codigo is null
+        defaultProjectoShouldNotBeFound("codigo.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo is greater than or equal to DEFAULT_CODIGO
+        defaultProjectoShouldBeFound("codigo.greaterThanOrEqual=" + DEFAULT_CODIGO);
+
+        // Get all the projectoList where codigo is greater than or equal to UPDATED_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.greaterThanOrEqual=" + UPDATED_CODIGO);
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo is less than or equal to DEFAULT_CODIGO
+        defaultProjectoShouldBeFound("codigo.lessThanOrEqual=" + DEFAULT_CODIGO);
+
+        // Get all the projectoList where codigo is less than or equal to SMALLER_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.lessThanOrEqual=" + SMALLER_CODIGO);
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsLessThanSomething() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo is less than DEFAULT_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.lessThan=" + DEFAULT_CODIGO);
+
+        // Get all the projectoList where codigo is less than UPDATED_CODIGO
+        defaultProjectoShouldBeFound("codigo.lessThan=" + UPDATED_CODIGO);
+    }
+
+    @Test
+    @Transactional
+    void getAllProjectosByCodigoIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        projectoRepository.saveAndFlush(projecto);
+
+        // Get all the projectoList where codigo is greater than DEFAULT_CODIGO
+        defaultProjectoShouldNotBeFound("codigo.greaterThan=" + DEFAULT_CODIGO);
+
+        // Get all the projectoList where codigo is greater than SMALLER_CODIGO
+        defaultProjectoShouldBeFound("codigo.greaterThan=" + SMALLER_CODIGO);
+    }
+
     /**
      * Executes the search, and checks that the default entity is returned.
      */
@@ -384,7 +482,8 @@ class ProjectoResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(projecto.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
             .andExpect(jsonPath("$.[*].zona").value(hasItem(DEFAULT_ZONA)))
-            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO)))
+            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO.intValue())));
 
         // Check, that the count call also returns 1
         restProjectoMockMvc
@@ -432,7 +531,7 @@ class ProjectoResourceIT {
         Projecto updatedProjecto = projectoRepository.findById(projecto.getId()).get();
         // Disconnect from session so that the updates on updatedProjecto are not directly saved in db
         em.detach(updatedProjecto);
-        updatedProjecto.nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO);
+        updatedProjecto.nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO).codigo(UPDATED_CODIGO);
         ProjectoDTO projectoDTO = projectoMapper.toDto(updatedProjecto);
 
         restProjectoMockMvc
@@ -450,6 +549,7 @@ class ProjectoResourceIT {
         assertThat(testProjecto.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testProjecto.getZona()).isEqualTo(UPDATED_ZONA);
         assertThat(testProjecto.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
+        assertThat(testProjecto.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test
@@ -529,7 +629,7 @@ class ProjectoResourceIT {
         Projecto partialUpdatedProjecto = new Projecto();
         partialUpdatedProjecto.setId(projecto.getId());
 
-        partialUpdatedProjecto.zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO);
+        partialUpdatedProjecto.zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO).codigo(UPDATED_CODIGO);
 
         restProjectoMockMvc
             .perform(
@@ -546,6 +646,7 @@ class ProjectoResourceIT {
         assertThat(testProjecto.getNome()).isEqualTo(DEFAULT_NOME);
         assertThat(testProjecto.getZona()).isEqualTo(UPDATED_ZONA);
         assertThat(testProjecto.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
+        assertThat(testProjecto.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test
@@ -560,7 +661,7 @@ class ProjectoResourceIT {
         Projecto partialUpdatedProjecto = new Projecto();
         partialUpdatedProjecto.setId(projecto.getId());
 
-        partialUpdatedProjecto.nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO);
+        partialUpdatedProjecto.nome(UPDATED_NOME).zona(UPDATED_ZONA).descricao(UPDATED_DESCRICAO).codigo(UPDATED_CODIGO);
 
         restProjectoMockMvc
             .perform(
@@ -577,6 +678,7 @@ class ProjectoResourceIT {
         assertThat(testProjecto.getNome()).isEqualTo(UPDATED_NOME);
         assertThat(testProjecto.getZona()).isEqualTo(UPDATED_ZONA);
         assertThat(testProjecto.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
+        assertThat(testProjecto.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test

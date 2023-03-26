@@ -29,6 +29,8 @@ public class ProjectoCriteria implements Serializable, Criteria {
 
     private StringFilter descricao;
 
+    private LongFilter codigo;
+
     private Boolean distinct;
 
     public ProjectoCriteria() {}
@@ -38,6 +40,7 @@ public class ProjectoCriteria implements Serializable, Criteria {
         this.nome = other.nome == null ? null : other.nome.copy();
         this.zona = other.zona == null ? null : other.zona.copy();
         this.descricao = other.descricao == null ? null : other.descricao.copy();
+        this.codigo = other.codigo == null ? null : other.codigo.copy();
         this.distinct = other.distinct;
     }
 
@@ -106,6 +109,21 @@ public class ProjectoCriteria implements Serializable, Criteria {
         this.descricao = descricao;
     }
 
+    public LongFilter getCodigo() {
+        return codigo;
+    }
+
+    public LongFilter codigo() {
+        if (codigo == null) {
+            codigo = new LongFilter();
+        }
+        return codigo;
+    }
+
+    public void setCodigo(LongFilter codigo) {
+        this.codigo = codigo;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -128,13 +146,14 @@ public class ProjectoCriteria implements Serializable, Criteria {
             Objects.equals(nome, that.nome) &&
             Objects.equals(zona, that.zona) &&
             Objects.equals(descricao, that.descricao) &&
+            Objects.equals(codigo, that.codigo) &&
             Objects.equals(distinct, that.distinct)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, zona, descricao, distinct);
+        return Objects.hash(id, nome, zona, descricao, codigo, distinct);
     }
 
     // prettier-ignore
@@ -145,6 +164,7 @@ public class ProjectoCriteria implements Serializable, Criteria {
             (nome != null ? "nome=" + nome + ", " : "") +
             (zona != null ? "zona=" + zona + ", " : "") +
             (descricao != null ? "descricao=" + descricao + ", " : "") +
+            (codigo != null ? "codigo=" + codigo + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

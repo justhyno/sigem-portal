@@ -74,6 +74,7 @@ class ProjectoGatlingTest extends Simulation {
                 "nome":"SAMPLE_TEXT"
                 , "zona":"SAMPLE_TEXT"
                 , "descricao":"SAMPLE_TEXT"
+                , "codigo":"0"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_projecto_url"))).exitHereIfFailed

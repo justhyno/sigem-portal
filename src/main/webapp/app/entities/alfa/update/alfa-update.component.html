@@ -19,6 +19,463 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.tipoTitular" for="field_tipoTitular">Tipo Titular</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tipoTitular"
+            id="field_tipoTitular"
+            data-cy="tipoTitular"
+            formControlName="tipoTitular"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.nomeTitular" for="field_nomeTitular">Nome Titular</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomeTitular"
+            id="field_nomeTitular"
+            data-cy="nomeTitular"
+            formControlName="nomeTitular"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.estadoSocial" for="field_estadoSocial">Estado Social</label>
+          <input
+            type="text"
+            class="form-control"
+            name="estadoSocial"
+            id="field_estadoSocial"
+            data-cy="estadoSocial"
+            formControlName="estadoSocial"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.dataNascimento" for="field_dataNascimento">Data Nascimento</label>
+          <div class="input-group">
+            <input
+              id="field_dataNascimento"
+              data-cy="dataNascimento"
+              type="text"
+              class="form-control"
+              name="dataNascimento"
+              ngbDatepicker
+              #dataNascimentoDp="ngbDatepicker"
+              formControlName="dataNascimento"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataNascimentoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.sexo" for="field_sexo">Sexo</label>
+          <input type="text" class="form-control" name="sexo" id="field_sexo" data-cy="sexo" formControlName="sexo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.documento" for="field_documento">Documento</label>
+          <input type="text" class="form-control" name="documento" id="field_documento" data-cy="documento" formControlName="documento" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.numeroDocumento" for="field_numeroDocumento">Numero Documento</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeroDocumento"
+            id="field_numeroDocumento"
+            data-cy="numeroDocumento"
+            formControlName="numeroDocumento"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.datEmissao" for="field_datEmissao">Dat Emissao</label>
+          <input
+            type="text"
+            class="form-control"
+            name="datEmissao"
+            id="field_datEmissao"
+            data-cy="datEmissao"
+            formControlName="datEmissao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.localEmissao" for="field_localEmissao">Local Emissao</label>
+          <input
+            type="text"
+            class="form-control"
+            name="localEmissao"
+            id="field_localEmissao"
+            data-cy="localEmissao"
+            formControlName="localEmissao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.contactoPrincipal" for="field_contactoPrincipal"
+            >Contacto Principal</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactoPrincipal"
+            id="field_contactoPrincipal"
+            data-cy="contactoPrincipal"
+            formControlName="contactoPrincipal"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.contactoAlternativo" for="field_contactoAlternativo"
+            >Contacto Alternativo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="contactoAlternativo"
+            id="field_contactoAlternativo"
+            data-cy="contactoAlternativo"
+            formControlName="contactoAlternativo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.estadoCivil" for="field_estadoCivil">Estado Civil</label>
+          <input
+            type="text"
+            class="form-control"
+            name="estadoCivil"
+            id="field_estadoCivil"
+            data-cy="estadoCivil"
+            formControlName="estadoCivil"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.nomeConjugue" for="field_nomeConjugue">Nome Conjugue</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomeConjugue"
+            id="field_nomeConjugue"
+            data-cy="nomeConjugue"
+            formControlName="nomeConjugue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.distritoMunicipal" for="field_distritoMunicipal"
+            >Distrito Municipal</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="distritoMunicipal"
+            id="field_distritoMunicipal"
+            data-cy="distritoMunicipal"
+            formControlName="distritoMunicipal"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.bairro" for="field_bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="field_bairro" data-cy="bairro" formControlName="bairro" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.quatreirao" for="field_quatreirao">Quatreirao</label>
+          <input
+            type="text"
+            class="form-control"
+            name="quatreirao"
+            id="field_quatreirao"
+            data-cy="quatreirao"
+            formControlName="quatreirao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.talhao" for="field_talhao">Talhao</label>
+          <input type="text" class="form-control" name="talhao" id="field_talhao" data-cy="talhao" formControlName="talhao" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.celula" for="field_celula">Celula</label>
+          <input type="text" class="form-control" name="celula" id="field_celula" data-cy="celula" formControlName="celula" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.bloco" for="field_bloco">Bloco</label>
+          <input type="text" class="form-control" name="bloco" id="field_bloco" data-cy="bloco" formControlName="bloco" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.avenida" for="field_avenida">Avenida</label>
+          <input type="text" class="form-control" name="avenida" id="field_avenida" data-cy="avenida" formControlName="avenida" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.numeroPolicia" for="field_numeroPolicia">Numero Policia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="numeroPolicia"
+            id="field_numeroPolicia"
+            data-cy="numeroPolicia"
+            formControlName="numeroPolicia"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.usoActual" for="field_usoActual">Uso Actual</label>
+          <input type="text" class="form-control" name="usoActual" id="field_usoActual" data-cy="usoActual" formControlName="usoActual" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.formaUso" for="field_formaUso">Forma Uso</label>
+          <input type="text" class="form-control" name="formaUso" id="field_formaUso" data-cy="formaUso" formControlName="formaUso" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.formaObtencao" for="field_formaObtencao">Forma Obtencao</label>
+          <input
+            type="text"
+            class="form-control"
+            name="formaObtencao"
+            id="field_formaObtencao"
+            data-cy="formaObtencao"
+            formControlName="formaObtencao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.tipo" for="field_tipo">Tipo</label>
+          <input type="text" class="form-control" name="tipo" id="field_tipo" data-cy="tipo" formControlName="tipo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.anoOcupacao" for="field_anoOcupacao">Ano Ocupacao</label>
+          <input
+            type="number"
+            class="form-control"
+            name="anoOcupacao"
+            id="field_anoOcupacao"
+            data-cy="anoOcupacao"
+            formControlName="anoOcupacao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.tipoAcesso" for="field_tipoAcesso">Tipo Acesso</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tipoAcesso"
+            id="field_tipoAcesso"
+            data-cy="tipoAcesso"
+            formControlName="tipoAcesso"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.conflito" for="field_conflito">Conflito</label>
+          <input type="checkbox" class="form-check" name="conflito" id="field_conflito" data-cy="conflito" formControlName="conflito" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.detalhesConflito" for="field_detalhesConflito"
+            >Detalhes Conflito</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="detalhesConflito"
+            id="field_detalhesConflito"
+            data-cy="detalhesConflito"
+            formControlName="detalhesConflito"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.construcaoPrecaria" for="field_construcaoPrecaria"
+            >Construcao Precaria</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="construcaoPrecaria"
+            id="field_construcaoPrecaria"
+            data-cy="construcaoPrecaria"
+            formControlName="construcaoPrecaria"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.pisosAcimaSoleira" for="field_pisosAcimaSoleira"
+            >Pisos Acima Soleira</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pisosAcimaSoleira"
+            id="field_pisosAcimaSoleira"
+            data-cy="pisosAcimaSoleira"
+            formControlName="pisosAcimaSoleira"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.pisosAbaixoSoleira" for="field_pisosAbaixoSoleira"
+            >Pisos Abaixo Soleira</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="pisosAbaixoSoleira"
+            id="field_pisosAbaixoSoleira"
+            data-cy="pisosAbaixoSoleira"
+            formControlName="pisosAbaixoSoleira"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoBarrote" for="field_materialConstrucaoBarrote"
+            >Material Construcao Barrote</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoBarrote"
+            id="field_materialConstrucaoBarrote"
+            data-cy="materialConstrucaoBarrote"
+            formControlName="materialConstrucaoBarrote"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoIBR" for="field_materialConstrucaoIBR"
+            >Material Construcao IBR</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoIBR"
+            id="field_materialConstrucaoIBR"
+            data-cy="materialConstrucaoIBR"
+            formControlName="materialConstrucaoIBR"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoPranchas" for="field_materialConstrucaoPranchas"
+            >Material Construcao Pranchas</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoPranchas"
+            id="field_materialConstrucaoPranchas"
+            data-cy="materialConstrucaoPranchas"
+            formControlName="materialConstrucaoPranchas"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoPau" for="field_materialConstrucaoPau"
+            >Material Construcao Pau</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoPau"
+            id="field_materialConstrucaoPau"
+            data-cy="materialConstrucaoPau"
+            formControlName="materialConstrucaoPau"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoCanico" for="field_materialConstrucaoCanico"
+            >Material Construcao Canico</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoCanico"
+            id="field_materialConstrucaoCanico"
+            data-cy="materialConstrucaoCanico"
+            formControlName="materialConstrucaoCanico"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.materialConstrucaoCimento" for="field_materialConstrucaoCimento"
+            >Material Construcao Cimento</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="materialConstrucaoCimento"
+            id="field_materialConstrucaoCimento"
+            data-cy="materialConstrucaoCimento"
+            formControlName="materialConstrucaoCimento"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.ocupacao" for="field_ocupacao">Ocupacao</label>
+          <input type="text" class="form-control" name="ocupacao" id="field_ocupacao" data-cy="ocupacao" formControlName="ocupacao" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.TipoContrucao" for="field_TipoContrucao">Tipo Contrucao</label>
+          <input
+            type="text"
+            class="form-control"
+            name="TipoContrucao"
+            id="field_TipoContrucao"
+            data-cy="TipoContrucao"
+            formControlName="TipoContrucao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.detalhesTipoContrucao" for="field_detalhesTipoContrucao"
+            >Detalhes Tipo Contrucao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="detalhesTipoContrucao"
+            id="field_detalhesTipoContrucao"
+            data-cy="detalhesTipoContrucao"
+            formControlName="detalhesTipoContrucao"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="sigemPortalApp.alfa.infraestruturaExistente" for="field_infraestruturaExistente"
+            >Infraestrutura Existente</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="infraestruturaExistente"
+            id="field_infraestruturaExistente"
+            data-cy="infraestruturaExistente"
+            formControlName="infraestruturaExistente"
+          />
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="sigemPortalApp.alfa.dataLevantamento" for="field_dataLevantamento"
             >Data Levantamento</label
           >

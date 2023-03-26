@@ -262,6 +262,8 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
         </dependency>
+ 
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
@@ -742,7 +744,7 @@
                                 <modelPackage>gov.cmcm.service.api.dto</modelPackage>
                                 <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                                 <importMappings>Problem=org.zalando.problem.Problem</importMappings>
-                                <skipValidateSpec>false</skipValidateSpec>
+                                <skipValidateSpec>true</skipValidateSpec>
                                 <configOptions>
                                     <delegatePattern>true</delegatePattern>
                                     <title>sigem-portal</title>
@@ -994,10 +996,10 @@
                                 <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                                 <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                                 <driver>org.postgresql.Driver</driver>
-                                <url>jdbc:postgresql://localhost:5432/SigemPortal</url>
-                                <defaultSchemaName></defaultSchemaName>
-                                <username>SigemPortal</username>
-                                <password></password>
+                                <url>jdbc:postgresql://localhost:5432/SIGEMPortal</url>
+                                <defaultSchemaName>public</defaultSchemaName>
+                                <username>postgres</username>
+                                <password>jufeba</password>
                                 <referenceUrl>hibernate:spring:gov.cmcm.domain?dialect=tech.jhipster.domain.util.FixedPostgreSQL10Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                                 <verbose>true</verbose>
                                 <logging>debug</logging>
@@ -1094,7 +1096,7 @@
                                 <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                                 <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                                 <driver>org.postgresql.Driver</driver>
-                                <url>jdbc:postgresql://localhost:5432/SigemPortal</url>
+                                <url>jdbc:postgresql://localhost:5432/SigemPortal?currentScheme=production</url>
                                 <defaultSchemaName></defaultSchemaName>
                                 <username>SigemPortal</username>
                                 <password></password>

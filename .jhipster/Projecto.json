@@ -1,6 +1,7 @@
 {
   "changelogDate": "20230326080408",
   "dto": "mapstruct",
+  "enableEntityAudit": true,
   "fields": [
     {
       "fieldName": "nome",
@@ -13,6 +14,10 @@
     {
       "fieldName": "descricao",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "Long"
     }
   ],
   "jpaMetamodelFiltering": true,

@@ -72,6 +72,48 @@ class AlfaGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "parcela":"SAMPLE_TEXT"
+                , "tipoTitular":"SAMPLE_TEXT"
+                , "nomeTitular":"SAMPLE_TEXT"
+                , "estadoSocial":"SAMPLE_TEXT"
+                , "dataNascimento":"2020-01-01T00:00:00.000Z"
+                , "sexo":"SAMPLE_TEXT"
+                , "documento":"SAMPLE_TEXT"
+                , "numeroDocumento":"SAMPLE_TEXT"
+                , "datEmissao":"SAMPLE_TEXT"
+                , "localEmissao":"SAMPLE_TEXT"
+                , "contactoPrincipal":"SAMPLE_TEXT"
+                , "contactoAlternativo":"SAMPLE_TEXT"
+                , "estadoCivil":"SAMPLE_TEXT"
+                , "nomeConjugue":"SAMPLE_TEXT"
+                , "distritoMunicipal":"SAMPLE_TEXT"
+                , "bairro":"SAMPLE_TEXT"
+                , "quatreirao":"SAMPLE_TEXT"
+                , "talhao":"SAMPLE_TEXT"
+                , "celula":"SAMPLE_TEXT"
+                , "bloco":"SAMPLE_TEXT"
+                , "avenida":"SAMPLE_TEXT"
+                , "numeroPolicia":"SAMPLE_TEXT"
+                , "usoActual":"SAMPLE_TEXT"
+                , "formaUso":"SAMPLE_TEXT"
+                , "formaObtencao":"SAMPLE_TEXT"
+                , "tipo":"SAMPLE_TEXT"
+                , "anoOcupacao":"0"
+                , "tipoAcesso":"SAMPLE_TEXT"
+                , "conflito":null
+                , "detalhesConflito":null
+                , "construcaoPrecaria":null
+                , "pisosAcimaSoleira":"0"
+                , "pisosAbaixoSoleira":"0"
+                , "materialConstrucaoBarrote":null
+                , "materialConstrucaoIBR":null
+                , "materialConstrucaoPranchas":null
+                , "materialConstrucaoPau":null
+                , "materialConstrucaoCanico":null
+                , "materialConstrucaoCimento":null
+                , "ocupacao":"SAMPLE_TEXT"
+                , "TipoContrucao":"SAMPLE_TEXT"
+                , "detalhesTipoContrucao":"SAMPLE_TEXT"
+                , "infraestruturaExistente":"SAMPLE_TEXT"
                 , "dataLevantamento":"2020-01-01T00:00:00.000Z"
                 }""")).asJson
             .check(status.is(201))

@@ -93,6 +93,138 @@ public class AlfaQueryService extends QueryService<Alfa> {
             if (criteria.getParcela() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getParcela(), Alfa_.parcela));
             }
+            if (criteria.getTipoTitular() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTipoTitular(), Alfa_.tipoTitular));
+            }
+            if (criteria.getNomeTitular() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNomeTitular(), Alfa_.nomeTitular));
+            }
+            if (criteria.getEstadoSocial() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEstadoSocial(), Alfa_.estadoSocial));
+            }
+            if (criteria.getDataNascimento() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getDataNascimento(), Alfa_.dataNascimento));
+            }
+            if (criteria.getSexo() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getSexo(), Alfa_.sexo));
+            }
+            if (criteria.getDocumento() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDocumento(), Alfa_.documento));
+            }
+            if (criteria.getNumeroDocumento() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNumeroDocumento(), Alfa_.numeroDocumento));
+            }
+            if (criteria.getDatEmissao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDatEmissao(), Alfa_.datEmissao));
+            }
+            if (criteria.getLocalEmissao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getLocalEmissao(), Alfa_.localEmissao));
+            }
+            if (criteria.getContactoPrincipal() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getContactoPrincipal(), Alfa_.contactoPrincipal));
+            }
+            if (criteria.getContactoAlternativo() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getContactoAlternativo(), Alfa_.contactoAlternativo));
+            }
+            if (criteria.getEstadoCivil() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getEstadoCivil(), Alfa_.estadoCivil));
+            }
+            if (criteria.getNomeConjugue() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNomeConjugue(), Alfa_.nomeConjugue));
+            }
+            if (criteria.getDistritoMunicipal() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getDistritoMunicipal(), Alfa_.distritoMunicipal));
+            }
+            if (criteria.getBairro() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getBairro(), Alfa_.bairro));
+            }
+            if (criteria.getQuatreirao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getQuatreirao(), Alfa_.quatreirao));
+            }
+            if (criteria.getTalhao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTalhao(), Alfa_.talhao));
+            }
+            if (criteria.getCelula() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCelula(), Alfa_.celula));
+            }
+            if (criteria.getBloco() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getBloco(), Alfa_.bloco));
+            }
+            if (criteria.getAvenida() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getAvenida(), Alfa_.avenida));
+            }
+            if (criteria.getNumeroPolicia() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getNumeroPolicia(), Alfa_.numeroPolicia));
+            }
+            if (criteria.getUsoActual() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getUsoActual(), Alfa_.usoActual));
+            }
+            if (criteria.getFormaUso() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFormaUso(), Alfa_.formaUso));
+            }
+            if (criteria.getFormaObtencao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getFormaObtencao(), Alfa_.formaObtencao));
+            }
+            if (criteria.getTipo() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTipo(), Alfa_.tipo));
+            }
+            if (criteria.getAnoOcupacao() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getAnoOcupacao(), Alfa_.anoOcupacao));
+            }
+            if (criteria.getTipoAcesso() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTipoAcesso(), Alfa_.tipoAcesso));
+            }
+            if (criteria.getConflito() != null) {
+                specification = specification.and(buildSpecification(criteria.getConflito(), Alfa_.conflito));
+            }
+            if (criteria.getDetalhesConflito() != null) {
+                specification = specification.and(buildSpecification(criteria.getDetalhesConflito(), Alfa_.detalhesConflito));
+            }
+            if (criteria.getConstrucaoPrecaria() != null) {
+                specification = specification.and(buildSpecification(criteria.getConstrucaoPrecaria(), Alfa_.construcaoPrecaria));
+            }
+            if (criteria.getPisosAcimaSoleira() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getPisosAcimaSoleira(), Alfa_.pisosAcimaSoleira));
+            }
+            if (criteria.getPisosAbaixoSoleira() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getPisosAbaixoSoleira(), Alfa_.pisosAbaixoSoleira));
+            }
+            if (criteria.getMaterialConstrucaoBarrote() != null) {
+                specification =
+                    specification.and(buildSpecification(criteria.getMaterialConstrucaoBarrote(), Alfa_.materialConstrucaoBarrote));
+            }
+            if (criteria.getMaterialConstrucaoIBR() != null) {
+                specification = specification.and(buildSpecification(criteria.getMaterialConstrucaoIBR(), Alfa_.materialConstrucaoIBR));
+            }
+            if (criteria.getMaterialConstrucaoPranchas() != null) {
+                specification =
+                    specification.and(buildSpecification(criteria.getMaterialConstrucaoPranchas(), Alfa_.materialConstrucaoPranchas));
+            }
+            if (criteria.getMaterialConstrucaoPau() != null) {
+                specification = specification.and(buildSpecification(criteria.getMaterialConstrucaoPau(), Alfa_.materialConstrucaoPau));
+            }
+            if (criteria.getMaterialConstrucaoCanico() != null) {
+                specification =
+                    specification.and(buildSpecification(criteria.getMaterialConstrucaoCanico(), Alfa_.materialConstrucaoCanico));
+            }
+            if (criteria.getMaterialConstrucaoCimento() != null) {
+                specification =
+                    specification.and(buildSpecification(criteria.getMaterialConstrucaoCimento(), Alfa_.materialConstrucaoCimento));
+            }
+            if (criteria.getOcupacao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getOcupacao(), Alfa_.ocupacao));
+            }
+            if (criteria.getTipoContrucao() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getTipoContrucao(), Alfa_.TipoContrucao));
+            }
+            if (criteria.getDetalhesTipoContrucao() != null) {
+                specification =
+                    specification.and(buildStringSpecification(criteria.getDetalhesTipoContrucao(), Alfa_.detalhesTipoContrucao));
+            }
+            if (criteria.getInfraestruturaExistente() != null) {
+                specification =
+                    specification.and(buildStringSpecification(criteria.getInfraestruturaExistente(), Alfa_.infraestruturaExistente));
+            }
             if (criteria.getDataLevantamento() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getDataLevantamento(), Alfa_.dataLevantamento));
             }

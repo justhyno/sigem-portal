@@ -1,0 +1,219 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="justhyno (generated)" id="1679826034241-3">
+        <addColumn tableName="alfa">
+            <column name="ano_ocupacao" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-4">
+        <addColumn tableName="alfa">
+            <column name="avenida" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-5">
+        <addColumn tableName="alfa">
+            <column name="bairro" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-6">
+        <addColumn tableName="alfa">
+            <column name="bloco" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-7">
+        <addColumn tableName="alfa">
+            <column name="celula" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-8">
+        <addColumn tableName="alfa">
+            <column name="conflito" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-9">
+        <addColumn tableName="alfa">
+            <column name="construcao_precaria" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-10">
+        <addColumn tableName="alfa">
+            <column name="contacto_alternativo" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-11">
+        <addColumn tableName="alfa">
+            <column name="contacto_principal" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-12">
+        <addColumn tableName="alfa">
+            <column name="dat_emissao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-13">
+        <addColumn tableName="alfa">
+            <column name="data_nascimento" type="date"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-14">
+        <addColumn tableName="alfa">
+            <column name="detalhes_conflito" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-15">
+        <addColumn tableName="alfa">
+            <column name="detalhes_tipo_contrucao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-16">
+        <addColumn tableName="alfa">
+            <column name="distrito_municipal" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-17">
+        <addColumn tableName="alfa">
+            <column name="documento" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-18">
+        <addColumn tableName="alfa">
+            <column name="estado_civil" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-19">
+        <addColumn tableName="alfa">
+            <column name="estado_social" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-20">
+        <addColumn tableName="alfa">
+            <column name="forma_obtencao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-21">
+        <addColumn tableName="alfa">
+            <column name="forma_uso" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-22">
+        <addColumn tableName="alfa">
+            <column name="infraestrutura_existente" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-23">
+        <addColumn tableName="alfa">
+            <column name="local_emissao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-24">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_barrote" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-25">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_canico" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-26">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_cimento" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-27">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_ibr" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-28">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_pau" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-29">
+        <addColumn tableName="alfa">
+            <column name="material_construcao_pranchas" type="boolean"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-30">
+        <addColumn tableName="alfa">
+            <column name="nome_conjugue" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-31">
+        <addColumn tableName="alfa">
+            <column name="nome_titular" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-32">
+        <addColumn tableName="alfa">
+            <column name="numero_documento" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-33">
+        <addColumn tableName="alfa">
+            <column name="numero_policia" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-34">
+        <addColumn tableName="alfa">
+            <column name="ocupacao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-35">
+        <addColumn tableName="alfa">
+            <column name="pisos_abaixo_soleira" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-36">
+        <addColumn tableName="alfa">
+            <column name="pisos_acima_soleira" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-37">
+        <addColumn tableName="alfa">
+            <column name="quatreirao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-38">
+        <addColumn tableName="alfa">
+            <column name="sexo" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-39">
+        <addColumn tableName="alfa">
+            <column name="talhao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-40">
+        <addColumn tableName="alfa">
+            <column name="tipo" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-41">
+        <addColumn tableName="alfa">
+            <column name="tipo_acesso" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-42">
+        <addColumn tableName="alfa">
+            <column name="tipo_contrucao" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-43">
+        <addColumn tableName="alfa">
+            <column name="tipo_titular" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-44">
+        <addColumn tableName="alfa">
+            <column name="uso_actual" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-1">
+        <dropUniqueConstraint constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="justhyno (generated)" id="1679826034241-2">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+</databaseChangeLog>

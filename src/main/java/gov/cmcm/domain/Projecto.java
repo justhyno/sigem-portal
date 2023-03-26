@@ -28,6 +28,9 @@ public class Projecto implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
+    @Column(name = "codigo")
+    private Long codigo;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -82,6 +85,19 @@ public class Projecto implements Serializable {
         this.descricao = descricao;
     }
 
+    public Long getCodigo() {
+        return this.codigo;
+    }
+
+    public Projecto codigo(Long codigo) {
+        this.setCodigo(codigo);
+        return this;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -93,22 +109,5 @@ public class Projecto implements Serializable {
             return false;
         }
         return id != null && id.equals(((Projecto) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "Projecto{" +
-            "id=" + getId() +
-            ", nome='" + getNome() + "'" +
-            ", zona='" + getZona() + "'" +
-            ", descricao='" + getDescricao() + "'" +
-            "}";
     }
 }

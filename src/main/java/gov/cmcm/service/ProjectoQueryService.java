@@ -99,6 +99,9 @@ public class ProjectoQueryService extends QueryService<Projecto> {
             if (criteria.getDescricao() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getDescricao(), Projecto_.descricao));
             }
+            if (criteria.getCodigo() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getCodigo(), Projecto_.codigo));
+            }
         }
         return specification;
     }

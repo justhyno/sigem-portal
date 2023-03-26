@@ -1,9 +1,178 @@
 {
   "changelogDate": "20230326082109",
   "dto": "mapstruct",
+  "enableEntityAudit": true,
   "fields": [
     {
       "fieldName": "parcela",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipoTitular",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeTitular",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoSocial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "sexo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroDocumento",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "datEmissao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "localEmissao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contactoPrincipal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contactoAlternativo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estadoCivil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nomeConjugue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "distritoMunicipal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bairro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quatreirao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "talhao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "celula",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bloco",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "avenida",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroPolicia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "usoActual",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "formaUso",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "formaObtencao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "anoOcupacao",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tipoAcesso",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "conflito",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "detalhesConflito",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "construcaoPrecaria",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "pisosAcimaSoleira",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pisosAbaixoSoleira",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "materialConstrucaoBarrote",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "materialConstrucaoIBR",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "materialConstrucaoPranchas",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "materialConstrucaoPau",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "materialConstrucaoCanico",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "materialConstrucaoCimento",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "ocupacao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "TipoContrucao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "detalhesTipoContrucao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "infraestruturaExistente",
       "fieldType": "String"
     },
     {
