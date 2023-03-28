@@ -3,7 +3,7 @@
     "pontos": {
       "home": {
         "title": "Pontos",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Actualizar a lista",
         "createLabel": "Criar novo(a) Pontos",
         "createOrEditLabel": "Criar ou editar Pontos",
         "notFound": "Nenhum Pontos encontrado"

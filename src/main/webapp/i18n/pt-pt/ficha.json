@@ -3,7 +3,7 @@
     "ficha": {
       "home": {
         "title": "Fichas",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Actualizar a lista",
         "createLabel": "Criar novo(a) Ficha",
         "createOrEditLabel": "Criar ou editar Ficha",
         "notFound": "Nenhum Fichas encontrado"

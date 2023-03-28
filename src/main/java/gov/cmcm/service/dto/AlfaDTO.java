@@ -1,5 +1,6 @@
 package gov.cmcm.service.dto;
 
+import com.poiji.annotation.ExcelCellName;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -12,90 +13,136 @@ public class AlfaDTO implements Serializable {
 
     private Long id;
 
+    @ExcelCellName("Codigo da Parcela")
     private String parcela;
 
+    @ExcelCellName("Tipo de Titular")
     private String tipoTitular;
 
+    @ExcelCellName("Nome do Titular")
     private String nomeTitular;
 
+    @ExcelCellName("Estado Social /Vulnerabilidade")
     private String estadoSocial;
 
+    @ExcelCellName("Data de Nascimento")
     private LocalDate dataNascimento;
 
+    @ExcelCellName("Sexo")
     private String sexo;
 
+    @ExcelCellName("Documento")
     private String documento;
 
+    @ExcelCellName("Número do Documento de Identificação")
     private String numeroDocumento;
 
+    @ExcelCellName("Data de Emissão")
     private String datEmissao;
 
+    @ExcelCellName("Local de Emissão")
     private String localEmissao;
 
+    @ExcelCellName("Contacto 1")
     private String contactoPrincipal;
 
+    @ExcelCellName("Contacto 2")
     private String contactoAlternativo;
 
+    @ExcelCellName("Estado Civil")
     private String estadoCivil;
 
+    @ExcelCellName("Nome do Conjugue")
     private String nomeConjugue;
 
+    @ExcelCellName("Distrito Municipal")
     private String distritoMunicipal;
 
+    @ExcelCellName("Bairro")
     private String bairro;
 
+    @ExcelCellName("Quarteirao")
     private String quatreirao;
 
+    @ExcelCellName("Talhao")
     private String talhao;
 
+    @ExcelCellName("Celula")
     private String celula;
 
+    @ExcelCellName("Zona/Bloco")
     private String bloco;
 
+    @ExcelCellName("Avenida/Rua")
     private String avenida;
 
+    @ExcelCellName("Numero de policia")
     private String numeroPolicia;
 
+    @ExcelCellName("Uso Actual do Solo")
     private String usoActual;
 
+    @ExcelCellName("Forma  de Uso")
     private String formaUso;
 
+    @ExcelCellName("Forma de Obtenção")
     private String formaObtencao;
 
+    @ExcelCellName("Tipo:")
     private String tipo;
 
+    @ExcelCellName("Ano de Ocupação")
     private Integer anoOcupacao;
 
+    @ExcelCellName("Tipo de Acesso:")
     private String tipoAcesso;
 
+    //@ExcelCellName("Bloco Cadastral")
     private Boolean conflito;
+
+    //@ExcelCellName("Bloco Cadastral")
 
     private Boolean detalhesConflito;
 
+    //@ExcelCellName("Bloco Cadastral")
+
     private Boolean construcaoPrecaria;
 
+    @ExcelCellName("Numero de pisos acima da soleira")
     private Integer pisosAcimaSoleira;
 
+    @ExcelCellName("Numero de pisos abaixo da soleira")
     private Integer pisosAbaixoSoleira;
 
+    @ExcelCellName("Bloco Cadastral")
     private Boolean materialConstrucaoBarrote;
 
+    //   @ExcelCellName("Bloco Cadastral")
+
     private Boolean materialConstrucaoIBR;
+    // @ExcelCellName("Bloco Cadastral")
 
     private Boolean materialConstrucaoPranchas;
+    //@ExcelCellName("Bloco Cadastral")
 
     private Boolean materialConstrucaoPau;
+    // @ExcelCellName("Bloco Cadastral")
 
     private Boolean materialConstrucaoCanico;
+    //@ExcelCellName("Bloco Cadastral")
 
     private Boolean materialConstrucaoCimento;
 
+    @ExcelCellName("Ocupacao")
     private String ocupacao;
 
+    @ExcelCellName("Tipos de Construcao")
     private String TipoContrucao;
 
+    @ExcelCellName("Especifique")
     private String detalhesTipoContrucao;
 
+    @ExcelCellName("Infraestruturas existentes no talhao")
     private String infraestruturaExistente;
 
     private LocalDate dataLevantamento;

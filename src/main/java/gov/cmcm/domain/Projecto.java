@@ -4,12 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
+public class User extends AbstractAuditingEntity<Long> implements Serializable {
  * A Projecto.
  */
 @Entity
 @Table(name = "projecto")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Projecto implements Serializable {
+public class Projecto extends AbstractAuditingEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

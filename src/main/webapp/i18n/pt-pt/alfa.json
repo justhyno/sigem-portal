@@ -3,7 +3,8 @@
     "alfa": {
       "home": {
         "title": "Alfas",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Actualizar a lista",
+
         "createLabel": "Criar novo(a) Alfa",
         "createOrEditLabel": "Criar ou editar Alfa",
         "notFound": "Nenhum Alfas encontrado"

@@ -87,10 +87,10 @@ public class SigemPortalApp {
         log.info(
             CRLFLogConverter.CRLF_SAFE_MARKER,
             "\n----------------------------------------------------------\n\t" +
-            "Application '{}' is running! Access URLs:\n\t" +
+            "Aplicação '{}' está em execução! links de acesso:\n\t" +
             "Local: \t\t{}://localhost:{}{}\n\t" +
-            "External: \t{}://{}:{}{}\n\t" +
-            "Profile(s): \t{}\n----------------------------------------------------------",
+            "Externo: \t{}://{}:{}{}\n\t" +
+            "Perfil: \t{}\n----------------------------------------------------------",
             env.getProperty("spring.application.name"),
             protocol,
             serverPort,

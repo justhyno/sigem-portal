@@ -3,7 +3,7 @@
     "projecto": {
       "home": {
         "title": "Projectos",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Actualizar a lista",
         "createLabel": "Criar novo(a) Projecto",
         "createOrEditLabel": "Criar ou editar Projecto",
         "notFound": "Nenhum Projectos encontrado"

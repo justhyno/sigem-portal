@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "alfa")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Alfa implements Serializable {
+public class Alfa extends AbstractAuditingEntity<Long> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

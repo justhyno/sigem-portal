@@ -3,7 +3,7 @@
     "spatialUnit": {
       "home": {
         "title": "Spatial Units",
-        "refreshListLabel": "Refresh list",
+        "refreshListLabel": "Actualizar a lista",
         "createLabel": "Criar novo(a) Spatial Unit",
         "createOrEditLabel": "Criar ou editar Spatial Unit",
         "notFound": "Nenhum Spatial Units encontrado"
