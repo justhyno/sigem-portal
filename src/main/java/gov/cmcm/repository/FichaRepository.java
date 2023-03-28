@@ -37,4 +37,7 @@ public interface FichaRepository extends JpaRepository<Ficha, Long>, JpaSpecific
 
     @Query("select ficha from Ficha ficha left join fetch ficha.projecto where ficha.id =:id")
     Optional<Ficha> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("select distinct ficha from Ficha ficha where parcela like ?2 and projecto.id = ?1")
+    Ficha findByProjectAndParcel(long projecto, String parcela);
 }

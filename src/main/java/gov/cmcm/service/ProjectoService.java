@@ -1,6 +1,7 @@
 package gov.cmcm.service;
 
 import gov.cmcm.service.dto.ProjectoDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -55,4 +56,8 @@ public interface ProjectoService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<ProjectoDTO> findAllProjects();
+
+    ProjectoDTO findByName(String name);
 }

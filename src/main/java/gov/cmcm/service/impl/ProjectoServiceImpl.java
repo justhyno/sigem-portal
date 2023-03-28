@@ -5,6 +5,7 @@ import gov.cmcm.repository.ProjectoRepository;
 import gov.cmcm.service.ProjectoService;
 import gov.cmcm.service.dto.ProjectoDTO;
 import gov.cmcm.service.mapper.ProjectoMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +81,20 @@ public class ProjectoServiceImpl implements ProjectoService {
     public void delete(Long id) {
         log.debug("Request to delete Projecto : {}", id);
         projectoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProjectoDTO> findAllProjects() {
+        // TODO Auto-generated method stub
+
+        return projectoMapper.toDto(projectoRepository.findAll());
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'findAllProjects'");
+    }
+
+    @Override
+    public ProjectoDTO findByName(String name) {
+        // TODO Auto-generated method stub
+        return projectoMapper.toDto(projectoRepository.findByNome(name));
     }
 }

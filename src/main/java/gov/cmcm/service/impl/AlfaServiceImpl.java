@@ -3,7 +3,10 @@ package gov.cmcm.service.impl;
 import gov.cmcm.domain.Alfa;
 import gov.cmcm.repository.AlfaRepository;
 import gov.cmcm.service.AlfaService;
+import gov.cmcm.service.FichaService;
 import gov.cmcm.service.dto.AlfaDTO;
+import gov.cmcm.service.dto.FichaDTO;
+import gov.cmcm.service.dto.ProjectoDTO;
 import gov.cmcm.service.mapper.AlfaMapper;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -26,9 +29,12 @@ public class AlfaServiceImpl implements AlfaService {
 
     private final AlfaMapper alfaMapper;
 
-    public AlfaServiceImpl(AlfaRepository alfaRepository, AlfaMapper alfaMapper) {
+    private final FichaService fichaService;
+
+    public AlfaServiceImpl(AlfaRepository alfaRepository, AlfaMapper alfaMapper, FichaService fichaService) {
         this.alfaRepository = alfaRepository;
         this.alfaMapper = alfaMapper;
+        this.fichaService = fichaService;
     }
 
     @Override
@@ -84,5 +90,13 @@ public class AlfaServiceImpl implements AlfaService {
     public void delete(Long id) {
         log.debug("Request to delete Alfa : {}", id);
         alfaRepository.deleteById(id);
+    }
+
+    @Override
+    public AlfaDTO save(AlfaDTO alfaDTO, ProjectoDTO projectoDTO) {
+        // TODO Auto-generated method stub
+        FichaDTO ficha = fichaService.findByProjectAndParcel(projectoDTO.getId(), alfaDTO.getParcela());
+        alfaDTO.setFicha(ficha);
+        return this.save(alfaDTO);
     }
 }

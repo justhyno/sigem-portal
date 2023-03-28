@@ -4,6 +4,7 @@ import gov.cmcm.domain.Ficha;
 import gov.cmcm.repository.FichaRepository;
 import gov.cmcm.service.FichaService;
 import gov.cmcm.service.dto.FichaDTO;
+import gov.cmcm.service.dto.ProjectoDTO;
 import gov.cmcm.service.mapper.FichaMapper;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -84,5 +85,22 @@ public class FichaServiceImpl implements FichaService {
     public void delete(Long id) {
         log.debug("Request to delete Ficha : {}", id);
         fichaRepository.deleteById(id);
+    }
+
+    @Override
+    public FichaDTO findByProjectAndParcel(Long project, String parcel) {
+        // TODO Auto-generated method stub
+        log.info("creating new ficha");
+
+        Ficha ficha = new Ficha();
+        ficha = fichaRepository.findByProjectAndParcel(project, parcel);
+        if (ficha == null) {
+            FichaDTO fichaDTO = new FichaDTO();
+            fichaDTO.setParcela(parcel);
+            ProjectoDTO projectoDTO = new ProjectoDTO();
+            projectoDTO.setId(project);
+            fichaDTO.setProjecto(projectoDTO);
+            return this.save(fichaDTO);
+        } else return fichaMapper.toDto(ficha);
     }
 }

@@ -63,4 +63,6 @@ public interface FichaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    FichaDTO findByProjectAndParcel(Long project, String parcel);
 }

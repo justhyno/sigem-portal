@@ -1,6 +1,7 @@
 package gov.cmcm.service;
 
 import gov.cmcm.service.dto.AlfaDTO;
+import gov.cmcm.service.dto.ProjectoDTO;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,8 @@ public interface AlfaService {
      * @return the persisted entity.
      */
     AlfaDTO save(AlfaDTO alfaDTO);
+
+    AlfaDTO save(AlfaDTO alfaDTO, ProjectoDTO projectoDTO);
 
     /**
      * Updates a alfa.

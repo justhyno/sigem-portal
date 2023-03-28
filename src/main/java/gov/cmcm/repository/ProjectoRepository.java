@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ProjectoRepository extends JpaRepository<Projecto, Long>, JpaSpecificationExecutor<Projecto> {}
+public interface ProjectoRepository extends JpaRepository<Projecto, Long>, JpaSpecificationExecutor<Projecto> {
+    @Query("FROM Projecto p WHERE p.nome =?1")
+    Projecto findByNome(String name);
+}

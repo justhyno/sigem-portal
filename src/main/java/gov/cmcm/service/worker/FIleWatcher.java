@@ -1,6 +1,12 @@
 package gov.cmcm.service.worker;
 
+import gov.cmcm.service.AlfaService;
+import gov.cmcm.service.ProjectoService;
+import gov.cmcm.service.UploadService;
+import gov.cmcm.service.dto.AlfaDTO;
+import gov.cmcm.service.dto.ProjectoDTO;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -13,8 +19,15 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -23,13 +36,48 @@ import org.springframework.stereotype.Component;
 public class FIleWatcher implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(FIleWatcher.class);
+    private static final String BASE_PATH = "res/projectos/";
+
+    private final ProjectoService projectoService;
+    private final UploadService uploadService;
+    private final AlfaService alfaService;
+
+    public FIleWatcher(ProjectoService projectoService, UploadService uploadService, AlfaService alfaService) {
+        this.projectoService = projectoService;
+        this.uploadService = uploadService;
+        this.alfaService = alfaService;
+    }
+
+    private void createFolder() {
+        List<ProjectoDTO> projectoDTOs = projectoService.findAllProjects();
+        log.info("A validar projectos");
+        for (ProjectoDTO projectoDTO : projectoDTOs) {
+            File directoryReceber = new File(BASE_PATH + projectoDTO.getNome() + "/receber");
+            File directoryEnviar = new File(BASE_PATH + projectoDTO.getNome() + "/processado");
+
+            if (!directoryReceber.exists()) {
+                try {
+                    FileUtils.forceMkdir(directoryReceber);
+                    FileUtils.forceMkdir(directoryEnviar);
+
+                    log.info("Estrutura do projecto '{}' criado com sucesso", projectoDTO.getNome());
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            } else {
+                log.info("O projecto {} já existe", projectoDTO.getNome());
+            }
+        }
+    }
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
         log.info("A catalogar os directorios");
-        Thread t = new Thread(new WatchServiceThread("res/projectos/"));
-        log.info("catalogo concluido");
+        this.createFolder();
 
+        Thread t = new Thread(new WatchServiceThread(BASE_PATH, this));
+        log.info("catalogo concluido");
         t.start();
     }
 
@@ -37,8 +85,11 @@ public class FIleWatcher implements ApplicationRunner {
 
         String rootDir;
 
-        WatchServiceThread(String rootDir) {
+        private final FIleWatcher fw;
+
+        WatchServiceThread(String rootDir, FIleWatcher fw) {
             this.rootDir = rootDir;
+            this.fw = fw;
         }
 
         @Override
@@ -67,10 +118,11 @@ public class FIleWatcher implements ApplicationRunner {
                         Path fullPath = ((Path) key.watchable()).resolve(filename);
                         String extension = FilenameUtils.getExtension(fullPath.toString());
 
-                        if ("xls".equals(extension) || "xlsx".equals(extension) || "csv".equals(extension)) {
+                        if ("xls".equals(extension)) {
                             // The file has a valid extension
                             log.info("novo ficheiro adicionado {}", fullPath.toString());
-                            messageQueue.Offer(new File(fullPath.toString()));
+                            // messageQueue.Offer(new File(fullPath.toString()));
+                            fw.uploadFile(fullPath.toString());
                         } else {
                             // The file has an invalid extension
                             log.warn("O ficheiro {} tem uma extensão inválida, {}", fullPath.toString(), extension);
@@ -136,13 +188,36 @@ public class FIleWatcher implements ApplicationRunner {
 
         String extension = FilenameUtils.getExtension(fullPath.toString());
 
-        if ("xls".equals(extension) || "xlsx".equals(extension) || "csv".equals(extension)) {
+        if ("xls".equals(extension)) {
             // The file has a valid extension
             log.info("novo ficheiro adicionado {}", fullPath.toString());
-            messageQueue.Offer(new File(fullPath.toString()));
+            // messageQueue.Offer(new File(fullPath.toString()));
+
         } else {
             // The file has an invalid extension
             log.warn("O ficheiro {} tem uma extensão inválida, {}", fullPath.toString(), extension);
+        }
+    }
+
+    public void uploadFile(String path) {
+        try {
+            Optional<List<AlfaDTO>> lista = uploadService.readAlpha(path);
+            Pattern pattern = Pattern.compile("projectos/(.*?)/receber");
+            Matcher matcher = pattern.matcher(path);
+            ProjectoDTO projecto = new ProjectoDTO();
+            if (matcher.find()) {
+                String result = matcher.group(1);
+                projecto = projectoService.findByName(result);
+            }
+
+            if (!lista.isEmpty()) {
+                for (AlfaDTO alfa : lista.get()) {
+                    alfaService.save(alfa, projecto);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 }
