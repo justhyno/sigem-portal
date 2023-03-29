@@ -1,6 +1,7 @@
 package gov.cmcm.repository;
 
 import gov.cmcm.domain.Ficha;
+import gov.cmcm.service.dto.FichaDTO;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -40,4 +41,9 @@ public interface FichaRepository extends JpaRepository<Ficha, Long>, JpaSpecific
 
     @Query("select distinct ficha from Ficha ficha where parcela like ?2 and projecto.id = ?1")
     Ficha findByProjectAndParcel(long projecto, String parcela);
+
+    @Query(value = "SELECT nextval(?1)", nativeQuery = true)
+    Long getNextVal(String sequenceName);
+
+    List<Ficha> findByProjectoId(Long projectoId);
 }

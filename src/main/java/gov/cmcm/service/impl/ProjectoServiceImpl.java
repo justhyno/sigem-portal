@@ -3,6 +3,7 @@ package gov.cmcm.service.impl;
 import gov.cmcm.domain.Projecto;
 import gov.cmcm.repository.ProjectoRepository;
 import gov.cmcm.service.ProjectoService;
+import gov.cmcm.service.TituloService;
 import gov.cmcm.service.dto.ProjectoDTO;
 import gov.cmcm.service.mapper.ProjectoMapper;
 import java.util.List;
@@ -27,9 +28,12 @@ public class ProjectoServiceImpl implements ProjectoService {
 
     private final ProjectoMapper projectoMapper;
 
-    public ProjectoServiceImpl(ProjectoRepository projectoRepository, ProjectoMapper projectoMapper) {
+    private final TituloService tituloService;
+
+    public ProjectoServiceImpl(ProjectoRepository projectoRepository, ProjectoMapper projectoMapper, TituloService tituloService) {
         this.projectoRepository = projectoRepository;
         this.projectoMapper = projectoMapper;
+        this.tituloService = tituloService;
     }
 
     @Override
@@ -96,5 +100,12 @@ public class ProjectoServiceImpl implements ProjectoService {
     public ProjectoDTO findByName(String name) {
         // TODO Auto-generated method stub
         return projectoMapper.toDto(projectoRepository.findByNome(name));
+    }
+
+    @Override
+    public Integer generateTitulo(Long id) {
+        // TODO Auto-generated method stub
+        tituloService.fetchTitulo(id);
+        return 0;
     }
 }

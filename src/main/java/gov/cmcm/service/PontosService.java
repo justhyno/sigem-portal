@@ -1,6 +1,8 @@
 package gov.cmcm.service;
 
 import gov.cmcm.service.dto.PontosDTO;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +18,8 @@ public interface PontosService {
      * @return the persisted entity.
      */
     PontosDTO save(PontosDTO pontosDTO);
+
+    PontosDTO save(PontosDTO pontosDTO, Long projecto);
 
     /**
      * Updates a pontos.
@@ -55,4 +59,8 @@ public interface PontosService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    public void deleteBySpu(HashMap<String, Long> map);
+
+    Optional<List<PontosDTO>> findByFicha(Long ficha);
 }

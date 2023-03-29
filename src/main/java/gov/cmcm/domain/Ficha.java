@@ -23,6 +23,8 @@ public class Ficha extends AbstractAuditingEntity<Long> implements Serializable 
     @Column(name = "parcela")
     private String parcela;
 
+    @SequenceGenerator(name = "processo", sequenceName = "processo", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "processo")
     @Column(name = "processo")
     private String processo;
 
@@ -84,7 +86,8 @@ public class Ficha extends AbstractAuditingEntity<Long> implements Serializable 
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -99,7 +102,8 @@ public class Ficha extends AbstractAuditingEntity<Long> implements Serializable 
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -107,9 +111,9 @@ public class Ficha extends AbstractAuditingEntity<Long> implements Serializable 
     @Override
     public String toString() {
         return "Ficha{" +
-            "id=" + getId() +
-            ", parcela='" + getParcela() + "'" +
-            ", processo='" + getProcesso() + "'" +
-            "}";
+                "id=" + getId() +
+                ", parcela='" + getParcela() + "'" +
+                ", processo='" + getProcesso() + "'" +
+                "}";
     }
 }

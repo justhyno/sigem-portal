@@ -3,6 +3,7 @@ package gov.cmcm.service.impl;
 import gov.cmcm.domain.SpatialUnit;
 import gov.cmcm.repository.SpatialUnitRepository;
 import gov.cmcm.service.SpatialUnitService;
+import gov.cmcm.service.dto.FichaDTO;
 import gov.cmcm.service.dto.SpatialUnitDTO;
 import gov.cmcm.service.mapper.SpatialUnitMapper;
 import java.util.Optional;
@@ -26,10 +27,7 @@ public class SpatialUnitServiceImpl implements SpatialUnitService {
 
     private final SpatialUnitMapper spatialUnitMapper;
 
-    public SpatialUnitServiceImpl(SpatialUnitRepository spatialUnitRepository, SpatialUnitMapper spatialUnitMapper) {
-        this.spatialUnitRepository = spatialUnitRepository;
-        this.spatialUnitMapper = spatialUnitMapper;
-    }
+    private final FichaServiceImpl fichaServiceImpl;
 
     @Override
     public SpatialUnitDTO save(SpatialUnitDTO spatialUnitDTO) {
@@ -37,6 +35,16 @@ public class SpatialUnitServiceImpl implements SpatialUnitService {
         SpatialUnit spatialUnit = spatialUnitMapper.toEntity(spatialUnitDTO);
         spatialUnit = spatialUnitRepository.save(spatialUnit);
         return spatialUnitMapper.toDto(spatialUnit);
+    }
+
+    public SpatialUnitServiceImpl(
+        SpatialUnitRepository spatialUnitRepository,
+        SpatialUnitMapper spatialUnitMapper,
+        FichaServiceImpl fichaServiceImpl
+    ) {
+        this.spatialUnitRepository = spatialUnitRepository;
+        this.spatialUnitMapper = spatialUnitMapper;
+        this.fichaServiceImpl = fichaServiceImpl;
     }
 
     @Override
@@ -84,5 +92,29 @@ public class SpatialUnitServiceImpl implements SpatialUnitService {
     public void delete(Long id) {
         log.debug("Request to delete SpatialUnit : {}", id);
         spatialUnitRepository.deleteById(id);
+    }
+
+    @Override
+    public SpatialUnitDTO getByProjectoAndParcela(Long projecto, String parcela) {
+        // TODO Auto-generated method stub'
+        FichaDTO ficha = fichaServiceImpl.findByProjectAndParcel(projecto, parcela);
+        Optional<SpatialUnit> spu = spatialUnitRepository.getByProjectoByFicha(ficha.getId());
+
+        if (!spu.isEmpty()) return spatialUnitMapper.toDto(spu.get()); else {
+            SpatialUnitDTO spuDto = new SpatialUnitDTO();
+            spuDto.setFicha(ficha);
+            spuDto.setParcela(parcela);
+            return this.save(spuDto);
+        }
+    }
+
+    @Override
+    public Optional<SpatialUnitDTO> findByFichaId(Long ficha) {
+        // TODO Auto-generated method stub
+        Optional<SpatialUnit> spatialUnit = spatialUnitRepository.findByFichaId(ficha);
+
+        if (spatialUnit.isPresent()) {
+            return Optional.of(spatialUnitMapper.toDto(spatialUnit.get()));
+        } else return Optional.empty();
     }
 }

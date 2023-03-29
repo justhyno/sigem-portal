@@ -39,6 +39,10 @@
       <button type="button" [routerLink]="['/projecto', projecto.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
       </button>
+
+      <button type="button" class="btn btn-danger btn-pdf" (click)="printTitulos()">
+        <fa-icon icon="file-pdf"></fa-icon>&nbsp;<span>Gerar titulos</span>
+      </button>
     </div>
   </div>
 </div>

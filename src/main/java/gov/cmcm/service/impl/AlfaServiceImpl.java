@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,9 +41,19 @@ public class AlfaServiceImpl implements AlfaService {
     @Override
     public AlfaDTO save(AlfaDTO alfaDTO) {
         log.debug("Request to save Alfa : {}", alfaDTO);
+        // delete if exist old
+        deleteByFicha(alfaDTO);
+
         Alfa alfa = alfaMapper.toEntity(alfaDTO);
         alfa = alfaRepository.save(alfa);
         return alfaMapper.toDto(alfa);
+    }
+
+    @Modifying
+    public void deleteByFicha(AlfaDTO alfa) {
+        Long ficha = alfa.getFicha().getId();
+
+        alfaRepository.deleteByFicha(ficha);
     }
 
     @Override
@@ -98,5 +109,15 @@ public class AlfaServiceImpl implements AlfaService {
         FichaDTO ficha = fichaService.findByProjectAndParcel(projectoDTO.getId(), alfaDTO.getParcela());
         alfaDTO.setFicha(ficha);
         return this.save(alfaDTO);
+    }
+
+    @Override
+    public Optional<AlfaDTO> findByFicha(long fichaId) {
+        Alfa alfa = alfaRepository.findByFichaId(fichaId);
+        if (alfa != null) {
+            return Optional.of(alfaMapper.toDto(alfa));
+        } else {
+            return Optional.empty();
+        }
     }
 }

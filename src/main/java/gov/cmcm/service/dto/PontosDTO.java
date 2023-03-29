@@ -1,5 +1,6 @@
 package gov.cmcm.service.dto;
 
+import com.poiji.annotation.ExcelCellName;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,16 +12,39 @@ public class PontosDTO implements Serializable {
 
     private Long id;
 
+    @ExcelCellName("Codigo")
     private String parcela;
 
+    @ExcelCellName("POINT_X")
     private Double pointX;
 
+    public int getOrdem() {
+        return ordem;
+    }
+
+    public void setOrdem(int ordem) {
+        this.ordem = ordem;
+    }
+
+    public String getEpsg() {
+        return epsg;
+    }
+
+    public void setEpsg(String epsg) {
+        this.epsg = epsg;
+    }
+
+    @ExcelCellName("POINT_Y")
     private Double pointY;
 
+    @ExcelCellName("marcos")
     private String marco;
 
+    @ExcelCellName("ZONE")
     private String zona;
 
+    private int ordem;
+    private String epsg;
     private SpatialUnitDTO spatialUnit;
 
     public Long getId() {
@@ -104,13 +128,13 @@ public class PontosDTO implements Serializable {
     @Override
     public String toString() {
         return "PontosDTO{" +
-            "id=" + getId() +
-            ", parcela='" + getParcela() + "'" +
-            ", pointX=" + getPointX() +
-            ", pointY=" + getPointY() +
-            ", marco='" + getMarco() + "'" +
-            ", zona='" + getZona() + "'" +
-            ", spatialUnit=" + getSpatialUnit() +
-            "}";
+                "id=" + getId() +
+                ", parcela='" + getParcela() + "'" +
+                ", pointX=" + getPointX() +
+                ", pointY=" + getPointY() +
+                ", marco='" + getMarco() + "'" +
+                ", zona='" + getZona() + "'" +
+                ", spatialUnit=" + getSpatialUnit() +
+                "}";
     }
 }

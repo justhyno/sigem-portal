@@ -34,13 +34,13 @@ public class AlfaDTO implements Serializable {
     @ExcelCellName("Documento")
     private String documento;
 
-    @ExcelCellName("Número do Documento de Identificação")
+    @ExcelCellName("Numero do Documento de Identificacao")
     private String numeroDocumento;
 
-    @ExcelCellName("Data de Emissão")
+    @ExcelCellName("Data de Emissao")
     private String datEmissao;
 
-    @ExcelCellName("Local de Emissão")
+    @ExcelCellName("Local de Emissao")
     private String localEmissao;
 
     @ExcelCellName("Contacto 1")

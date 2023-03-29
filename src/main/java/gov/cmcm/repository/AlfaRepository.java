@@ -37,4 +37,10 @@ public interface AlfaRepository extends JpaRepository<Alfa, Long>, JpaSpecificat
 
     @Query("select alfa from Alfa alfa left join fetch alfa.ficha where alfa.id =:id")
     Optional<Alfa> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Modifying
+    @Query("delete from Alfa a where a.ficha.id=?1")
+    void deleteByFicha(Long ficha);
+
+    Alfa findByFichaId(Long ficha);
 }

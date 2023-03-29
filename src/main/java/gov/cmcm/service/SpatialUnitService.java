@@ -17,6 +17,8 @@ public interface SpatialUnitService {
      */
     SpatialUnitDTO save(SpatialUnitDTO spatialUnitDTO);
 
+    SpatialUnitDTO getByProjectoAndParcela(Long projecto, String parcela);
+
     /**
      * Updates a spatialUnit.
      *
@@ -63,4 +65,6 @@ public interface SpatialUnitService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Optional<SpatialUnitDTO> findByFichaId(Long ficha);
 }

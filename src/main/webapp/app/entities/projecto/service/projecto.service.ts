@@ -15,6 +15,7 @@ export type EntityArrayResponseType = HttpResponse<IProjecto[]>;
 @Injectable({ providedIn: 'root' })
 export class ProjectoService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/projectos');
+  protected duatUrl = this.resourceUrl + '/titulos';
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -41,6 +42,10 @@ export class ProjectoService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  printTitulo(id: number): Observable<HttpResponse<{}>> {
+    return this.http.get(`${this.duatUrl}/${id}`, { observe: 'response' });
   }
 
   getProjectoIdentifier(projecto: Pick<IProjecto, 'id'>): number {

@@ -1,6 +1,7 @@
 package gov.cmcm.service;
 
 import gov.cmcm.service.dto.FichaDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -65,4 +66,6 @@ public interface FichaService {
     void delete(Long id);
 
     FichaDTO findByProjectAndParcel(Long project, String parcel);
+
+    List<FichaDTO> findByProject(Long project);
 }

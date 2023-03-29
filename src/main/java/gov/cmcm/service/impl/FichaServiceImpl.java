@@ -6,6 +6,7 @@ import gov.cmcm.service.FichaService;
 import gov.cmcm.service.dto.FichaDTO;
 import gov.cmcm.service.dto.ProjectoDTO;
 import gov.cmcm.service.mapper.FichaMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,17 +91,27 @@ public class FichaServiceImpl implements FichaService {
     @Override
     public FichaDTO findByProjectAndParcel(Long project, String parcel) {
         // TODO Auto-generated method stub
-        log.info("creating new ficha");
+        log.info("appending ficha");
 
         Ficha ficha = new Ficha();
         ficha = fichaRepository.findByProjectAndParcel(project, parcel);
         if (ficha == null) {
             FichaDTO fichaDTO = new FichaDTO();
             fichaDTO.setParcela(parcel);
+            fichaDTO.setProcesso(fichaRepository.getNextVal("processo") + "");
             ProjectoDTO projectoDTO = new ProjectoDTO();
             projectoDTO.setId(project);
             fichaDTO.setProjecto(projectoDTO);
             return this.save(fichaDTO);
         } else return fichaMapper.toDto(ficha);
+    }
+
+    public void retrieveTitulos() {}
+
+    @Override
+    public List<FichaDTO> findByProject(Long project) {
+        // TODO Auto-generated method stub
+
+        return fichaMapper.toDto(fichaRepository.findByProjectoId(project));
     }
 }

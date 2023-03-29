@@ -59,5 +59,7 @@ public interface ProjectoService {
 
     List<ProjectoDTO> findAllProjects();
 
+    Integer generateTitulo(Long id);
+
     ProjectoDTO findByName(String name);
 }

@@ -1,9 +1,11 @@
 package gov.cmcm.service.worker;
 
 import gov.cmcm.service.AlfaService;
+import gov.cmcm.service.PontosService;
 import gov.cmcm.service.ProjectoService;
 import gov.cmcm.service.UploadService;
 import gov.cmcm.service.dto.AlfaDTO;
+import gov.cmcm.service.dto.PontosDTO;
 import gov.cmcm.service.dto.ProjectoDTO;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,15 +21,20 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -41,11 +48,13 @@ public class FIleWatcher implements ApplicationRunner {
     private final ProjectoService projectoService;
     private final UploadService uploadService;
     private final AlfaService alfaService;
+    private final PontosService pontosService;
 
-    public FIleWatcher(ProjectoService projectoService, UploadService uploadService, AlfaService alfaService) {
+    public FIleWatcher(ProjectoService projectoService, UploadService uploadService, AlfaService alfaService, PontosService pontosService) {
         this.projectoService = projectoService;
         this.uploadService = uploadService;
         this.alfaService = alfaService;
+        this.pontosService = pontosService;
     }
 
     private void createFolder() {
@@ -185,23 +194,27 @@ public class FIleWatcher implements ApplicationRunner {
 
     private void sentToQueue(Path path) {
         Path fullPath = path.getFileName().toAbsolutePath();
-
         String extension = FilenameUtils.getExtension(fullPath.toString());
 
         if ("xls".equals(extension)) {
             // The file has a valid extension
-            log.info("novo ficheiro adicionado {}", fullPath.toString());
+            log.info("a carregar o ficheiro {}", path.toFile().getAbsolutePath());
             // messageQueue.Offer(new File(fullPath.toString()));
 
+            try {
+                this.uploadFile(path.toFile().getAbsolutePath());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         } else {
             // The file has an invalid extension
             log.warn("O ficheiro {} tem uma extensão inválida, {}", fullPath.toString(), extension);
         }
     }
 
-    public void uploadFile(String path) {
+    public void uploadFile(String path) throws IOException {
         try {
-            Optional<List<AlfaDTO>> lista = uploadService.readAlpha(path);
             Pattern pattern = Pattern.compile("projectos/(.*?)/receber");
             Matcher matcher = pattern.matcher(path);
             ProjectoDTO projecto = new ProjectoDTO();
@@ -210,14 +223,48 @@ public class FIleWatcher implements ApplicationRunner {
                 projecto = projectoService.findByName(result);
             }
 
-            if (!lista.isEmpty()) {
-                for (AlfaDTO alfa : lista.get()) {
-                    alfaService.save(alfa, projecto);
-                }
+            switch (readFirstCell(path)) {
+                case 1:
+                    Optional<List<PontosDTO>> pontos = uploadService.readGeo(path);
+                    if (!pontos.isEmpty()) {
+                        HashMap<String, Long> parcelIds = new HashMap<>();
+                        for (PontosDTO ponto : pontos.get()) {
+                            parcelIds.put(ponto.getParcela(), projecto.getId());
+                        }
+                        pontosService.deleteBySpu(parcelIds);
+                        for (PontosDTO ponto : pontos.get()) {
+                            pontosService.save(ponto, projecto.getId());
+                        }
+                    }
+                    break;
+                case 2:
+                    Optional<List<AlfaDTO>> lista = uploadService.readAlpha(path);
+                    if (!lista.isEmpty()) {
+                        for (AlfaDTO alfa : lista.get()) {
+                            alfaService.save(alfa, projecto);
+                        }
+                    }
+                    break;
+                default:
+                    log.error("ficheiro não válido");
+                    break;
             }
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static int readFirstCell(String path) throws IOException {
+        File file = new File(path);
+        Workbook workbook = WorkbookFactory.create(file);
+        Sheet sheet = workbook.getSheetAt(0);
+        Row row = sheet.getRow(0);
+        Cell cell = row.getCell(0);
+        String cellValue = cell.getStringCellValue();
+        workbook.close();
+        log.info("value readed {}", cellValue);
+        if (cellValue.equalsIgnoreCase("Codigo")) return 1; else if (cellValue.equalsIgnoreCase("Codigo da Parcela")) return 2;
+
+        return -1;
     }
 }

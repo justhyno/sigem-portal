@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "pontos")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Pontos extends AbstractAuditingEntity<Long> implements Serializable {
+public class Pontos implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

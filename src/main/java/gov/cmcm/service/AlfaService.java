@@ -66,4 +66,6 @@ public interface AlfaService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Optional<AlfaDTO> findByFicha(long fichaId);
 }

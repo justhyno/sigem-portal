@@ -37,4 +37,9 @@ public interface SpatialUnitRepository extends JpaRepository<SpatialUnit, Long>,
 
     @Query("select spatialUnit from SpatialUnit spatialUnit left join fetch spatialUnit.ficha where spatialUnit.id =:id")
     Optional<SpatialUnit> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("select spatialUnit from SpatialUnit spatialUnit where spatialUnit.ficha.id=?1")
+    Optional<SpatialUnit> getByProjectoByFicha(long id);
+
+    Optional<SpatialUnit> findByFichaId(Long ficha);
 }

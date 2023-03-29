@@ -1,10 +1,16 @@
 package gov.cmcm.service.impl;
 
 import gov.cmcm.domain.Pontos;
+import gov.cmcm.domain.SpatialUnit;
 import gov.cmcm.repository.PontosRepository;
 import gov.cmcm.service.PontosService;
+import gov.cmcm.service.SpatialUnitService;
 import gov.cmcm.service.dto.PontosDTO;
+import gov.cmcm.service.dto.SpatialUnitDTO;
 import gov.cmcm.service.mapper.PontosMapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +32,12 @@ public class PontosServiceImpl implements PontosService {
 
     private final PontosMapper pontosMapper;
 
-    public PontosServiceImpl(PontosRepository pontosRepository, PontosMapper pontosMapper) {
+    private final SpatialUnitService spatialUnit;
+
+    public PontosServiceImpl(PontosRepository pontosRepository, PontosMapper pontosMapper, SpatialUnitService spatialUnit) {
         this.pontosRepository = pontosRepository;
         this.pontosMapper = pontosMapper;
+        this.spatialUnit = spatialUnit;
     }
 
     @Override
@@ -80,5 +89,42 @@ public class PontosServiceImpl implements PontosService {
     public void delete(Long id) {
         log.debug("Request to delete Pontos : {}", id);
         pontosRepository.deleteById(id);
+    }
+
+    @Override
+    public PontosDTO save(PontosDTO pontosDTO, Long projecto) {
+        SpatialUnitDTO spatialUnitDTO = spatialUnit.getByProjectoAndParcela(projecto, pontosDTO.getParcela());
+        pontosDTO.setSpatialUnit(spatialUnitDTO);
+        return this.save(pontosDTO);
+    }
+
+    @Override
+    public void deleteBySpu(HashMap<String, Long> map) {
+        for (Map.Entry<String, Long> entry : map.entrySet()) {
+            String parcela = entry.getKey();
+            Long projecto = entry.getValue();
+            SpatialUnitDTO spatialUnitDTO = spatialUnit.getByProjectoAndParcela(projecto, parcela);
+
+            pontosRepository.deleteBySpatialUnitId(spatialUnitDTO.getId());
+
+            System.out.println(parcela + " -> " + projecto);
+        }
+    }
+
+    @Override
+    public Optional<List<PontosDTO>> findByFicha(Long ficha) {
+        // TODO Auto-generated method stub
+
+        // find SpatialUnit
+        Optional<SpatialUnitDTO> spUnit = spatialUnit.findByFichaId(ficha);
+        if (!spUnit.isEmpty()) {
+            SpatialUnitDTO spatialUnitDTO = spUnit.get();
+            List<Pontos> pontos = pontosRepository.findBySpatialUnitId(spatialUnitDTO.getId());
+            if (pontos != null) {
+                return Optional.of(pontosMapper.toDto(pontos));
+            }
+        }
+
+        return Optional.empty();
     }
 }
