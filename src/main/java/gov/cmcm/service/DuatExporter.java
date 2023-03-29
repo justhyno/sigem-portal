@@ -63,6 +63,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -783,5 +784,17 @@ public class DuatExporter {
 
     public static List<String> pontosString(List<PontosDTO> pontos) {
         return pontos.stream().map(p -> p.getPointX() + " " + p.getPointY()).collect(Collectors.toList());
+    }
+
+    public static InputStream downloadImage(String url) throws Exception {
+        // Build URI with URL parameters
+        URI uri = new URIBuilder(url).build();
+        // Create HTTP GET request with URI
+        HttpGet request = new HttpGet(uri);
+        // Create HTTP client and execute request
+        try (CloseableHttpClient client = HttpClients.createDefault()) {
+            InputStream content = client.execute(request).getEntity().getContent();
+            return content;
+        }
     }
 }
