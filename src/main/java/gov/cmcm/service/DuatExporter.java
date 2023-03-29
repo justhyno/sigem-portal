@@ -43,6 +43,7 @@ import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.layout.property.VerticalAlignment;
 import gov.cmcm.service.dto.PontosDTO;
 import gov.cmcm.service.dto.TituloDTO;
 import gov.cmcm.util.GisUtil;
@@ -66,7 +67,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import org.geotools.geometry.DirectPosition2D;
@@ -89,6 +94,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DuatExporter {
+
+    private static Map<String, Image> imageCache = new HashMap<>();
+    private ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     public static void addCellMap(String label, String value, Table table) {
         if (value == null) {
@@ -179,6 +187,7 @@ public class DuatExporter {
         String boldText,
         TituloDTO titulo
     ) throws IOException {
+        GisUtil gisUtil = new GisUtil();
         Paragraph p1 = new Paragraph();
         // PdfFont font = PdfFontFactory.createFont(FontConstants.HELVETICA,
         // PdfEncodings.IDENTITY_H, true);
@@ -187,11 +196,11 @@ public class DuatExporter {
         pro.setBold();
         p1.add(pro).setTextAlignment(TextAlignment.CENTER);
         document.add(p1);
-
         document.add(new Paragraph("\n").setMarginBottom(0));
-        Paragraph p3 = new Paragraph();
 
+        Paragraph p3 = new Paragraph();
         p3.add(boldText);
+
         p3.setTextAlignment(TextAlignment.CENTER);
         document.add(p3);
         Paragraph p4 = new Paragraph();
@@ -199,34 +208,34 @@ public class DuatExporter {
         p4.add(des);
         document.add(p4);
         document.add(new Paragraph("\n").setMarginBottom(0));
-
         // lets write identificacao de titulares
         document.add(new Paragraph(identificacao).setBold());
 
         LineSeparator bottomLine = new LineSeparator(new SolidLine());
 
         addCellMap("NOME COMPLETO", titulo.getNomeCompleto(), table);
+
         addCellMap("DOCUMENTO DE IDENTIFICAÇÃO", titulo.getDocumentoIdentificacao(), table);
         addCellMap("DATA DE NASCIMENTO", titulo.getDataNascimento(), table);
         addCellMap("NACIONALIDADE", "MOÇAMNBICANA", table);
         addCellMap("ESTADO CIVIL", titulo.getEstadoCivil(), table);
-
         addCellMap("DISTRITO MUNICIPAL", titulo.getDistritoMunicipal(), table2);
+
         addCellMap("BAIRRO:", titulo.getBairro(), table2);
         addCellMap("NÚMERO DA PARCELA:", titulo.getProcesso(), table2);
-        addCellMap("SUPERFICIE DA PARCELA:", titulo.getSuperficieParcela() + " m2", table2);
+        addCellMap("SUPERFICIE DA PARCELA:", gisUtil.polyArea(titulo.getPontos()) + " m2", table2);
         addCellMap("ÄVENIDA/RUA", titulo.getAvenida(), table2);
         addCellMap("FINALIDADE", titulo.getFinalidade(), table2);
         addCellMap("DATA EMISSÃO", titulo.getDataEmissao(), table2);
         addCellMap("VALIDADE", "Sem prazo de validade", table2);
         document.add(table);
-
         // line break
         document.add(new Paragraph("\n").setMarginBottom(0));
 
         // lets now add dados de localização
 
         document.add(new Paragraph(localizacao).setBold());
+
         document.add(table2);
         String textoCentralizado = "Maputo aos 20 de Março de 2023";
         Paragraph p2 = new Paragraph();
@@ -277,6 +286,7 @@ public class DuatExporter {
             // Retrieve the OpenStreetMap image
             // Image mapImage = getOpenStreetMapImage(latitude, longitude, zoom, width,
             // height);
+
             Image mapImage = getOpenStreetMapImageWithPolygon(utmCoordinates, zoom, width, height);
             // Image mapImage = new Image(mapImageData);
             mapImage.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -346,16 +356,29 @@ public class DuatExporter {
         insertEmptyLines(2, document);
         DeviceRgb colorTableHeader = new DeviceRgb(188, 204, 228);
         // First row
+
         Cell cell = new Cell(2, 1).add(new Paragraph("Pontos")).setBackgroundColor(colorTableHeader);
+        cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+
         table.addCell(cell);
         Cell celw = new Cell(1, 2).add(new Paragraph("Coordenadas UTM")).setBackgroundColor(colorTableHeader);
+        celw.setHorizontalAlignment(HorizontalAlignment.CENTER);
 
         table.addCell(celw);
         Cell marcos = new Cell().add(new Paragraph("Marcos")).setBackgroundColor(colorTableHeader);
         table.addCell(marcos);
-        table.addCell(new Cell().add(new Paragraph("X")).setBackgroundColor(colorTableHeader));
-        table.addCell(new Cell().add(new Paragraph("Y")).setBackgroundColor(colorTableHeader));
-        table.addCell(new Cell().add(new Paragraph("Descricao dos vertices das parcelas")).setBackgroundColor(colorTableHeader));
+        table.addCell(
+            new Cell().add(new Paragraph("X")).setBackgroundColor(colorTableHeader).setHorizontalAlignment(HorizontalAlignment.CENTER)
+        );
+        table.addCell(
+            new Cell().add(new Paragraph("Y")).setBackgroundColor(colorTableHeader).setHorizontalAlignment(HorizontalAlignment.CENTER)
+        );
+        table.addCell(
+            new Cell()
+                .add(new Paragraph("Descricao dos vertices das parcelas"))
+                .setHorizontalAlignment(HorizontalAlignment.CENTER)
+                .setBackgroundColor(colorTableHeader)
+        );
 
         List<PontosDTO> coordinates = titulo.getPontos();
 
@@ -421,7 +444,62 @@ public class DuatExporter {
         document.close();
     }
 
+    public static Image getGoogleMapsImage(double latitude, double longitude, int zoom, int width, int height, String apiKey)
+        throws IOException {
+        int scale = 2;
+        String center = latitude + "," + longitude;
+        String url = String.format(
+            "https://maps.googleapis.com/maps/api/staticmap?center=%s&zoom=%d&size=%dx%d&scale=%d&key=%s",
+            center,
+            zoom,
+            width,
+            height,
+            scale,
+            apiKey
+        );
+        System.out.println("URL: " + url);
+        URL imageUrl = new URL(url);
+        URLConnection connection = imageUrl.openConnection();
+        connection.setRequestProperty(
+            "User-Agent",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+        );
+        connection.setConnectTimeout(20000); // Set connection timeout to 20 seconds
+        connection.setReadTimeout(10000); // Set read timeout to 10 seconds
+
+        try (InputStream is = connection.getInputStream()) {
+            ImageData imageData = ImageDataFactory.create(is.readAllBytes());
+            // Create a PdfImageXObject with the image data
+            PdfImageXObject imageXObject = new PdfImageXObject(imageData);
+            // Create an Image object with the PdfImageXObject
+            Image image = new Image(imageXObject);
+            // Set the width of the image to half of the page width
+            float halfPageWidth = (PageSize.A4.getWidth() / 1.50f);
+            image.setWidth(halfPageWidth);
+            // Set the height of the image proportionally to maintain aspect ratio
+            float aspectRatio = (float) imageData.getWidth() / (float) imageData.getHeight();
+            float halfPageHeight = halfPageWidth / aspectRatio;
+            image.setHeight(halfPageHeight);
+            image.scaleToFit(width, height);
+            // Add a black border around the image
+            image.setBorder(new SolidBorder(2));
+            return image;
+            // return new Image(imageData);
+        } catch (IOException e) {
+            System.err.println("Error retrieving image: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
     public static Image getOpenStreetMapImage(double latitude, double longitude, int zoom, int width, int height) throws IOException {
+        String cacheKey = String.format("%f_%f_%d_%d_%d", latitude, longitude, zoom, width, height);
+        Image cachedImage = imageCache.get(cacheKey);
+        if (cachedImage != null) {
+            System.out.println("returning from cache");
+            return cachedImage;
+        }
+
         System.out.println("trying to get image");
         int[] tileXY = latLonToTileXY(latitude, longitude, zoom);
         String url = String.format("https://tile.openstreetmap.org/%d/%d/%d.png", zoom, tileXY[0], tileXY[1]);
@@ -452,6 +530,7 @@ public class DuatExporter {
                 image.scaleToFit(width, height);
                 // Add a black border around the image
                 image.setBorder(new SolidBorder(2));
+                imageCache.put(cacheKey, image);
                 return image;
                 // return new Image(imageData);
             } catch (IOException e) {
@@ -510,6 +589,9 @@ public class DuatExporter {
         Point2D.Double center = findCenterOfPolygon(latLongCoordinates);
 
         // Retrieve the OSM image with the center of the polygon
+
+        // Image image = getGoogleMapsImage(center.y, center.x, zoom, width, height);
+
         Image image = getOpenStreetMapImage(center.y, center.x, zoom, width, height);
 
         // Draw the polygon on the image
